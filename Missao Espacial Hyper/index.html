@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Missão Espacial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="terra.gif" class="terra-bg">
+
+
+    <!------- TELA INICIAL ------->
+    <section class="hero">
+        <h1>MISSÃO SUPERNOVA</h1>
+        <p class="subtitulo">O futuro à algumas estrelas de distancia</p>
+    </section>
+
+ <section class="painel">
+    <div class="container">
+
+        <!-- FOGUETE -->
+        <div class="card">
+            <h2>Foguete</h2>
+
+            <input type="text" id="nomeFoguete" placeholder="Nome">
+            <input type="text" id="statusFoguete" placeholder="Status">
+            <input type="text" id="combustivel" placeholder="Combustível">
+            <input type="text" id="carga" placeholder="Carga">
+
+            <button onclick="atualizarFoguete()">Salvar</button>
+            <p id="resFoguete"></p>
+        </div>
+
+        <!-- SATÉLITE -->
+        <div class="card">
+            <h2>Satélite</h2>
+
+            <input type="text" id="nomeSatelite" placeholder="Nome">
+            <input type="text" id="orbita" placeholder="Orbita">
+            <input type="text" id="energia" placeholder="Energia">
+
+            <button onclick="atualizarSatelite()">Salvar</button>
+            <p id="resSatelite"></p>
+
+            <button onclick="mostrarFinalidades()">Ver Finalidades</button>
+
+            <div id="finalidades" style="display: none;">
+                <label>
+                    <input type="checkbox" value="Comunicação Global"> Comunicação Global
+                </label><br>
+                <label>
+                    <input type="checkbox" value="Localização Global"> Localização Global
+                </label><br>
+                <label>
+                    <input type="checkbox" value="Monitoramento Global"> Monitoramento Global
+                </label>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
