@@ -1,8 +1,8 @@
-// ── Dados da aplicação ─────────────────────────────────────────────────────
+// ──  aplicação ───
 const foguetes  = [];
 const satelites = [];
 
-// ── Navegação entre abas ───────────────────────────────────────────────────
+// ── mudar de abas ───
 function trocarAba(id, botao) {
   document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('ativo'));
@@ -13,7 +13,7 @@ function trocarAba(id, botao) {
   if (id === 'simulacao') preencherSelects();
 }
 
-// ── Exibir alerta temporário ───────────────────────────────────────────────
+// ── Exibir alerta temporário ───
 function mostrarAlerta(id, mensagem, tipo) {
   const el = document.getElementById(id);
   el.textContent = mensagem;
@@ -21,7 +21,7 @@ function mostrarAlerta(id, mensagem, tipo) {
   setTimeout(() => el.className = 'alerta', 3000);
 }
 
-// ── Registrar foguete ──────────────────────────────────────────────────────
+// ──  foguete ───
 function registrarFoguete() {
   const nome        = document.getElementById('f-nome').value.trim();
   const carga       = parseFloat(document.getElementById('f-carga').value);
@@ -41,7 +41,7 @@ function registrarFoguete() {
   );
 }
 
-// ── Registrar satélite ─────────────────────────────────────────────────────
+// ──  satélite ────
 function registrarSatelite() {
   const nome   = document.getElementById('s-nome').value.trim();
   const massa  = parseFloat(document.getElementById('s-massa').value);
@@ -62,7 +62,7 @@ function registrarSatelite() {
   );
 }
 
-// ── Renderizar Hangar ──────────────────────────────────────────────────────
+// ── Renderizar Hangar ────
 function renderizarHangar() {
   document.getElementById('qtd-foguetes').textContent = foguetes.length;
   document.getElementById('qtd-satelites').textContent = satelites.length;
@@ -93,7 +93,7 @@ function renderizarHangar() {
           </div>`).join('');
 }
 
-// ── Preencher selects da simulação ─────────────────────────────────────────
+// ── Preencher informacoes da simulação ────
 function preencherSelects() {
   document.getElementById('sim-foguete').innerHTML =
     '<option value="">-- Selecionar Foguete --</option>' +
@@ -104,7 +104,7 @@ function preencherSelects() {
     satelites.map((s, i) => `<option value="${i}">${s.nome}</option>`).join('');
 }
 
-// ── Simulação de lançamento ────────────────────────────────────────────────
+// ── Simulação de lançamento ─────
 function simularLancamento() {
   const fi = document.getElementById('sim-foguete').value;
   const si = document.getElementById('sim-satelite').value;
@@ -133,7 +133,7 @@ function simularLancamento() {
   // Contagem regressiva
   adicionar('> 5... 4... 3... 2... 1...', '');
 
-  // Lançamento (precisa de pelo menos 400 L)
+  // Lançamento ( pelo menos 400 coisa)
   const sucesso = f.combustivel > 400;
 
   if (sucesso) {
@@ -171,7 +171,7 @@ function simularLancamento() {
   statusEl.style.color = sucesso ? '#00ff9d' : '#ff3d5a';
 }
 
-// ── Limpar simulação ───────────────────────────────────────────────────────
+// ── Limpar simulação ────
 function limparSimulacao() {
   document.getElementById('terminal').innerHTML =
     '<span class="azul">// SISTEMA PRONTO. AGUARDANDO INSTRUÇÃO...</span>';
