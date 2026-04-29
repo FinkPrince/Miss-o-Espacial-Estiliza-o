@@ -1,4 +1,4 @@
-/* ── Variáveis de cor ────────────────────────────────────────────────────── */
+/* ── cor ─── */
 :root {
   --fundo:    #060b14;
   --card:     #0d1a2e;
@@ -13,7 +13,7 @@
   --cinza:    #4a7a9b;
 }
 
-/* ── Reset e base ────────────────────────────────────────────────────────── */
+/* ── Reset e base ─── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -26,7 +26,7 @@ body {
   margin: 0 auto;
 }
 
-/* ── Cabeçalho ───────────────────────────────────────────────────────────── */
+/* ── header ─── */
 header {
   text-align: center;
   padding: 24px 0 20px;
@@ -36,7 +36,7 @@ header {
 header h1 { font-size: 22px; color: var(--azul); letter-spacing: 3px; }
 header p  { font-size: 11px; color: var(--cinza); margin-top: 6px; letter-spacing: 4px; }
 
-/* ── Navegação ───────────────────────────────────────────────────────────── */
+/* ── Navegação ─── */
 nav {
   display: flex;
   gap: 4px;
@@ -59,11 +59,11 @@ nav button {
 nav button:hover { color: var(--texto2); }
 nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
 
-/* ── Abas ────────────────────────────────────────────────────────────────── */
+/* ── Abas ─── */
 .aba        { display: none; }
 .aba.ativa  { display: block; }
 
-/* ── Card ────────────────────────────────────────────────────────────────── */
+/* ── Card ──── */
 .card {
   background: var(--card);
   border: 1px solid var(--borda);
@@ -80,7 +80,7 @@ nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
   text-transform: uppercase;
 }
 
-/* ── Formulário ──────────────────────────────────────────────────────────── */
+/* ── Formulário ─── */
 .formulario {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -115,7 +115,7 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
 input[type="number"] { -moz-appearance: textfield; }
 
-/* ── Botões ──────────────────────────────────────────────────────────────── */
+/* ── buttons ──── */
 .btn {
   border: 1px solid;
   border-radius: 3px;
@@ -133,7 +133,7 @@ input[type="number"] { -moz-appearance: textfield; }
 .btn.vermelho { color: var(--vermelho); border-color: var(--vermelho); }
 .btn.cinza  { color: var(--cinza);   border-color: var(--cinza); }
 
-/* ── Alertas ─────────────────────────────────────────────────────────────── */
+/* ── Alertas ─── */
 .alerta {
   font-size: 12px;
   padding: 8px 12px;
@@ -144,7 +144,7 @@ input[type="number"] { -moz-appearance: textfield; }
 .alerta.ok   { display: block; color: var(--verde);   border: 1px solid var(--verde);   background: rgba(0,255,157,.05); }
 .alerta.erro { display: block; color: var(--vermelho); border: 1px solid var(--vermelho); background: rgba(255,61,90,.05); }
 
-/* ── Hangar ──────────────────────────────────────────────────────────────── */
+/* ── Hangar ─── */
 h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 14px; }
 
 .vazio {
@@ -176,7 +176,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   border-radius: 2px;
 }
 
-/* ── Telemetria ──────────────────────────────────────────────────────────── */
+/* ── informacoes ─── */
 .telemetria {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -195,7 +195,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 .tele-label { font-size: 10px; color: var(--cinza); letter-spacing: 2px; text-transform: uppercase; }
 .tele-valor { font-size: 20px; font-weight: bold; color: var(--verde); }
 
-/* ── Terminal ────────────────────────────────────────────────────────────── */
+/* ── Terminal ─── */
 .controles {
   display: flex;
   gap: 10px;
@@ -240,7 +240,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 
 @keyframes aparecer { to { opacity: 1; } }
 
-/* ── Responsivo ──────────────────────────────────────────────────────────── */
+/* ── acao ──── */
 @media (max-width: 600px) {
   .formulario { grid-template-columns: 1fr; }
   .telemetria { grid-template-columns: 1fr 1fr; }
