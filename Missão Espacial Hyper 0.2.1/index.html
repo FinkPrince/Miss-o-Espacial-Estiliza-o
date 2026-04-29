@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro de Controle Espacial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>🚀 Centro de Controle Espacial</h1>
+    <p>Missão Supernova Ederson Skywalker !</p>
+  </header>
+
+  <nav>
+    <button class="ativo" onclick="trocarAba('foguetes', this)">🚀 Foguetes</button>
+    <button onclick="trocarAba('satelites', this)">🛰️ Satélites</button>
+    <button onclick="trocarAba('hangar', this)">🔧 Hangar</button>
+    <button onclick="trocarAba('simulacao', this)">🔥 Simulação</button>
+  </nav>
+
+  <!--FOGUETES-->
+  <section id="foguetes" class="aba ativa">
+    <div class="card">
+      <h2>Registrar Foguete</h2>
+      <div id="alerta-foguete" class="alerta"></div>
+      <div class="formulario">
+        <label>Nome<input id="f-nome" type="text" placeholder="Ex: Falcon-9"></label>
+        <label>Carga (kg)<input id="f-carga" type="number" placeholder="0"></label>
+        <label>Combustível (L)<input id="f-combustivel" type="number" placeholder="0"></label>
+        <label>Temperatura (°C)<input id="f-temperatura" type="number" placeholder="0"></label>
+        <label>Status
+          <select id="f-status">
+            <option>Tripulado</option>
+            <option>Não tripulado</option>
+          </select>
+        </label>
+      </div>
+      <button class="btn azul" onclick="registrarFoguete()">Registrar</button>
+    </div>
+  </section>
+
+  <!--SATÉLITES-->
+  <section id="satelites" class="aba">
+    <div class="card">
+      <h2>Registrar Satélite</h2>
+      <div id="alerta-satelite" class="alerta"></div>
+      <div class="formulario">
+        <label>Nome<input id="s-nome" type="text" placeholder="Ex: STARLINK-01"></label>
+        <label>Massa (kg)<input id="s-massa" type="number" placeholder="0"></label>
+        <label>Energia (%)
+          <input id="s-energia" type="number" placeholder="0" min="0" max="100">
+        </label>
+        <label>Órbita
+          <select id="s-orbita">
+            <option value="LEO">LEO — Baixa Órbita</option>
+            <option value="GEO">GEO — Geoestacionária</option>
+            <option value="LUNAR">LUNAR — Órbita Lunar</option>
+          </select>
+        </label>
+        <label>Função
+          <select id="s-obs">
+            <option>Espionagem</option>
+            <option>Localização / GPS</option>
+            <option>Comunicação</option>
+          </select>
+        </label>
+        <label>Tempo em Órbita
+          <select id="s-tempo">
+            <option>7 meses</option>
+            <option>1 ano e 4 meses</option>
+            <option>2 anos</option>
+          </select>
+        </label>
+      </div>
+      <button class="btn verde" onclick="registrarSatelite()">Registrar</button>
+    </div>
+  </section>
+
+  <!--HANGAR-->
+  <section id="hangar" class="aba">
+    <h2>🚀 Foguetes <span id="qtd-foguetes" class="badge">0</span></h2>
+    <div id="lista-foguetes"><p class="vazio">Nenhum foguete registrado.</p></div>
+
+    <h2 style="margin-top:32px">🛰️ Satélites <span id="qtd-satelites" class="badge">0</span></h2>
+    <div id="lista-satelites"><p class="vazio">Nenhum satélite registrado.</p></div>
+  </section>
+
+  <!--SIMULAÇÃO LANÇAMENTO-->
+  <section id="simulacao" class="aba">
+
+    <!--DADOS DO LANÇAMENTO-->
+    <div id="telemetria" style="display:none" class="telemetria">
+      <div class="tele"><span class="tele-label">Combustível</span><span id="t-comb" class="tele-valor">--</span> L</div>
+      <div class="tele"><span class="tele-label">Temperatura</span><span id="t-temp" class="tele-valor">--</span> °C</div>
+      <div class="tele"><span class="tele-label">Energia Satélite</span><span id="t-ener" class="tele-valor">--</span> %</div>
+      <div class="tele"><span class="tele-label">Status</span><span id="t-status" class="tele-valor">--</span></div>
+    </div>
+
+    <div class="card">
+      <h2>🔥 Controle de Lançamento</h2>
+      <div class="controles">
+        <select id="sim-foguete"><option value="">-- Selecionar Foguete --</option></select>
+        <select id="sim-satelite"><option value="">-- Selecionar Satélite --</option></select>
+        <button class="btn vermelho" onclick="simularLancamento()">🔥 Lançar</button>
+        <button class="btn cinza" onclick="limparSimulacao()">✕ Limpar</button>
+      </div>
+      <div id="terminal">
+        <span class="azul">// SISTEMA TÁ LISO PAPAI ... AGUARDANDO INSTRUÇÃO...</span>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

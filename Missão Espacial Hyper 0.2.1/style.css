@@ -1,0 +1,247 @@
+/* ── Variáveis de cor ────────────────────────────────────────────────────── */
+:root {
+  --fundo:    #060b14;
+  --card:     #0d1a2e;
+  --borda:    #1a3a5c;
+  --azul:     #00c8ff;
+  --verde:    #00ff9d;
+  --laranja:  #ff6b35;
+  --vermelho: #ff3d5a;
+  --amarelo:  #ffc107;
+  --texto:    #c8dff0;
+  --texto2:   #7aadce;
+  --cinza:    #4a7a9b;
+}
+
+/* ── Reset e base ────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: monospace;
+  font-size: 15px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── Cabeçalho ───────────────────────────────────────────────────────────── */
+header {
+  text-align: center;
+  padding: 24px 0 20px;
+  border-bottom: 1px solid var(--borda);
+  margin-bottom: 24px;
+}
+header h1 { font-size: 22px; color: var(--azul); letter-spacing: 3px; }
+header p  { font-size: 11px; color: var(--cinza); margin-top: 6px; letter-spacing: 4px; }
+
+/* ── Navegação ───────────────────────────────────────────────────────────── */
+nav {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--borda);
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+nav button {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--cinza);
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding: 10px 18px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+nav button:hover { color: var(--texto2); }
+nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
+
+/* ── Abas ────────────────────────────────────────────────────────────────── */
+.aba        { display: none; }
+.aba.ativa  { display: block; }
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-left: 3px solid var(--azul);
+  border-radius: 4px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.card h2 {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--azul);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+/* ── Formulário ──────────────────────────────────────────────────────────── */
+.formulario {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--cinza);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.formulario input,
+.formulario select {
+  background: #0f1e35;
+  border: 1px solid var(--borda);
+  border-radius: 3px;
+  color: var(--texto);
+  font-family: monospace;
+  font-size: 13px;
+  padding: 8px 10px;
+  outline: none;
+}
+.formulario input:focus,
+.formulario select:focus { border-color: var(--azul); }
+
+/* Remove setas dos campos numéricos */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+input[type="number"] { -moz-appearance: textfield; }
+
+/* ── Botões ──────────────────────────────────────────────────────────────── */
+.btn {
+  border: 1px solid;
+  border-radius: 3px;
+  background: transparent;
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn:hover  { opacity: 0.8; }
+.btn.azul   { color: var(--azul);    border-color: var(--azul); }
+.btn.verde  { color: var(--verde);   border-color: var(--verde); }
+.btn.vermelho { color: var(--vermelho); border-color: var(--vermelho); }
+.btn.cinza  { color: var(--cinza);   border-color: var(--cinza); }
+
+/* ── Alertas ─────────────────────────────────────────────────────────────── */
+.alerta {
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+  display: none;
+}
+.alerta.ok   { display: block; color: var(--verde);   border: 1px solid var(--verde);   background: rgba(0,255,157,.05); }
+.alerta.erro { display: block; color: var(--vermelho); border: 1px solid var(--vermelho); background: rgba(255,61,90,.05); }
+
+/* ── Hangar ──────────────────────────────────────────────────────────────── */
+h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 14px; }
+
+.vazio {
+  color: var(--cinza);
+  font-size: 12px;
+  padding: 30px;
+  text-align: center;
+}
+.item {
+  background: #0c1626;
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  align-items: center;
+}
+.item strong { font-size: 14px; color: var(--texto); width: 100%; }
+.item span   { font-size: 12px; color: var(--texto2); }
+
+.badge {
+  font-size: 10px;
+  color: var(--azul);
+  border: 1px solid var(--borda);
+  background: rgba(0,200,255,.08);
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
+/* ── Telemetria ──────────────────────────────────────────────────────────── */
+.telemetria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.tele {
+  background: #0c1626;
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tele-label { font-size: 10px; color: var(--cinza); letter-spacing: 2px; text-transform: uppercase; }
+.tele-valor { font-size: 20px; font-weight: bold; color: var(--verde); }
+
+/* ── Terminal ────────────────────────────────────────────────────────────── */
+.controles {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.controles select {
+  background: #0f1e35;
+  border: 1px solid var(--borda);
+  border-radius: 3px;
+  color: var(--texto);
+  font-family: monospace;
+  font-size: 13px;
+  padding: 8px 10px;
+  outline: none;
+  flex: 1;
+  min-width: 160px;
+}
+
+#terminal {
+  background: #02080f;
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  padding: 20px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+#terminal span {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--texto2);
+  opacity: 0;
+  animation: aparecer 0.3s forwards;
+}
+#terminal span.azul    { color: var(--azul); }
+#terminal span.verde   { color: var(--verde); }
+#terminal span.amarelo { color: var(--amarelo); }
+#terminal span.vermelho{ color: var(--vermelho); }
+
+@keyframes aparecer { to { opacity: 1; } }
+
+/* ── Responsivo ──────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .formulario { grid-template-columns: 1fr; }
+  .telemetria { grid-template-columns: 1fr 1fr; }
+}
