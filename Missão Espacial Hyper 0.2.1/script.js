@@ -177,3 +177,98 @@ function limparSimulacao() {
     '<span class="azul">// SISTEMA PRONTO. AGUARDANDO INSTRUÇÃO...</span>';
   document.getElementById('telemetria').style.display = 'none';
 }
+// ── Preencher select da trajetória ───
+function preencherSelectTrajetoria() {
+  document.getElementById('traj-foguete').innerHTML =
+    '<option value="">-- Selecionar Foguete --</option>' +
+    foguetes.map((f, i) => `<option value="${i}">${f.nome}</option>`).join('');
+}
+ 
+// ── Mostrar trajetória ────
+function mostrarTrajetoria() {
+  const fi = document.getElementById('traj-foguete').value;
+  if (fi === '') { alert('Selecione um foguete!'); return; }
+ 
+  const f = foguetes[parseInt(fi)];
+ 
+  // Pontos da trajetória: Terra → Atmosfera → Órbita (variam por índice do foguete)
+  const seed  = parseInt(fi) + 1;
+  const pontos = [
+    { x: 80,  y: 340, label: '🌍 Terra' },
+    { x: 80 + seed * 60,  y: 260 - seed * 10, label: '🔥 Ignição' },
+    { x: 200 + seed * 50, y: 180 - seed * 15, label: '☁ Atmosfera' },
+    { x: 340 + seed * 40, y: 100 - seed * 5,  label: '🛰 Órbita' },
+  ];
+ 
+  // Gerar path SVG curvo entre os pontos
+  let d = `M ${pontos[0].x} ${pontos[0].y}`;
+  for (let i = 1; i < pontos.length; i++) {
+    const prev = pontos[i - 1];
+    const cur  = pontos[i];
+    const cx   = (prev.x + cur.x) / 2;
+    d += ` Q ${cx} ${prev.y} ${cur.x} ${cur.y}`;
+  }
+ 
+  // Montar SVG
+  const pins = pontos.map(p => `
+    <circle cx="${p.x}" cy="${p.y}" r="6" fill="#060b14" stroke="#00c8ff" stroke-width="2"/>
+    <circle cx="${p.x}" cy="${p.y}" r="2" fill="#00c8ff"/>
+    <line x1="${p.x}" y1="${p.y}" x2="${p.x}" y2="${p.y - 28}" stroke="#00c8ff" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="${p.x}" y="${p.y - 34}" text-anchor="middle" fill="#00c8ff" font-size="11" font-family="monospace">${p.label}</text>
+  `).join('');
+ 
+  document.getElementById('traj-container').innerHTML = `
+    <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" class="traj-svg">
+      <!-- Grade de fundo -->
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0,200,255,0.06)" stroke-width="1"/>
+        </pattern>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <rect width="600" height="380" fill="#02080f"/>
+      <rect width="600" height="380" fill="url(#grid)"/>
+ 
+      <!-- Trajetória pontilhada (sombra) -->
+      <path d="${d}" fill="none" stroke="rgba(0,200,255,0.15)" stroke-width="6" stroke-linecap="round"/>
+      <!-- Trajetória principal animada -->
+      <path id="traj-path" d="${d}" fill="none" stroke="#00c8ff" stroke-width="2.5"
+        stroke-dasharray="600" stroke-dashoffset="600" stroke-linecap="round"
+        filter="url(#glow)">
+        <animate attributeName="stroke-dashoffset" from="600" to="0" dur="1.8s" fill="freeze"/>
+      </path>
+ 
+      <!-- Pins -->
+      ${pins}
+ 
+      <!-- Ícone do foguete animado -->
+      <text id="icone-foguete" font-size="22" text-anchor="middle">
+        <animateMotion dur="1.8s" fill="freeze" rotate="auto">
+          <mpath href="#traj-path"/>
+        </animateMotion>
+        🚀
+      </text>
+ 
+      <!-- Nome do foguete -->
+      <text x="300" y="370" text-anchor="middle" fill="rgba(0,200,255,0.4)" font-size="11" font-family="monospace" letter-spacing="3">${f.nome.toUpperCase()}</text>
+    </svg>`;
+ 
+  // Info do foguete
+  const info = document.getElementById('traj-info');
+  info.style.display = 'flex';
+  info.innerHTML = `
+    <span>🚀 <b>${f.nome}</b></span>
+    <span>Combustível: ${f.combustivel} L</span>
+    <span>Temperatura: ${f.temperatura}°C</span>
+    <span>Status: ${f.status}</span>`;
+}
+ 
+// ── Limpar trajetória───
+function limparTrajetoria() {
+  document.getElementById('traj-container').innerHTML =
+    '<p class="vazio">Selecione um foguete para visualizar a trajetória.</p>';
+  document.getElementById('traj-info').style.display = 'none';
+}
