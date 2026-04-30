@@ -195,9 +195,9 @@ function mostrarTrajetoria() {
   const seed  = parseInt(fi) + 1;
   const pontos = [
     { x: 80,  y: 340, label: '🌍 Terra' },
-    { x: 80 + seed * 60,  y: 260 - seed * 10, label: '🔥 Ignição' },
-    { x: 200 + seed * 50, y: 180 - seed * 15, label: '☁ Atmosfera' },
-    { x: 340 + seed * 40, y: 100 - seed * 5,  label: '🛰 Órbita' },
+    { x: 80 + seed * 60,  y: 260 - seed * 10, label: ' Ignição' },
+    { x: 200 + seed * 50, y: 180 - seed * 15, label: ' Atmosfera' },
+    { x: 340 + seed * 40, y: 100 - seed * 5,  label: ' Órbita' },
   ];
  
   // Gerar path SVG curvo entre os pontos
