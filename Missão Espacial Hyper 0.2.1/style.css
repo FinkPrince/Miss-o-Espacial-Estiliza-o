@@ -25,7 +25,6 @@ body {
   max-width: 900px;
   margin: 0 auto;
 }
-
 /* ── header ─── */
 header {
   text-align: center;
@@ -35,7 +34,6 @@ header {
 }
 header h1 { font-size: 22px; color: var(--azul); letter-spacing: 3px; }
 header p  { font-size: 11px; color: var(--cinza); margin-top: 6px; letter-spacing: 4px; }
-
 /* ── Navegação ─── */
 nav {
   display: flex;
@@ -58,7 +56,6 @@ nav button {
 }
 nav button:hover { color: var(--texto2); }
 nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
-
 /* ── Abas ─── */
 .aba        { display: none; }
 .aba.ativa  { display: block; }
@@ -79,7 +76,6 @@ nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
   margin-bottom: 16px;
   text-transform: uppercase;
 }
-
 /* ── Formulário ─── */
 .formulario {
   display: grid;
@@ -114,7 +110,6 @@ nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
 input[type="number"] { -moz-appearance: textfield; }
-
 /* ── buttons ──── */
 .btn {
   border: 1px solid;
@@ -132,7 +127,6 @@ input[type="number"] { -moz-appearance: textfield; }
 .btn.verde  { color: var(--verde);   border-color: var(--verde); }
 .btn.vermelho { color: var(--vermelho); border-color: var(--vermelho); }
 .btn.cinza  { color: var(--cinza);   border-color: var(--cinza); }
-
 /* ── Alertas ─── */
 .alerta {
   font-size: 12px;
@@ -175,7 +169,6 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   padding: 2px 8px;
   border-radius: 2px;
 }
-
 /* ── informacoes ─── */
 .telemetria {
   display: grid;
@@ -194,7 +187,6 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 }
 .tele-label { font-size: 10px; color: var(--cinza); letter-spacing: 2px; text-transform: uppercase; }
 .tele-valor { font-size: 20px; font-weight: bold; color: var(--verde); }
-
 /* ── Terminal ─── */
 .controles {
   display: flex;
@@ -215,7 +207,6 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   flex: 1;
   min-width: 160px;
 }
-
 #terminal {
   background: #02080f;
   border: 1px solid var(--borda);
@@ -245,3 +236,24 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   .formulario { grid-template-columns: 1fr; }
   .telemetria { grid-template-columns: 1fr 1fr; }
 }
+/* ── Trajetória ──── */
+.traj-svg {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--borda);
+  display: block;
+  margin-top: 14px;
+}
+.traj-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  background: #0c1626;
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--texto2);
+  margin-top: 14px;
+}
+.traj-info b { color: var(--azul); }
