@@ -18,9 +18,10 @@
     <button onclick="trocarAba('satelites', this)">🛰️ Satélites</button>
     <button onclick="trocarAba('hangar', this)">🔧 Hangar</button>
     <button onclick="trocarAba('simulacao', this)">🔥 Simulação</button>
+     <button onclick="trocarAba('trajetoria', this)">📡 Trajetória</button>
   </nav>
 
-  <!--FOGUETES-->
+  <!--foguete-->
   <section id="foguetes" class="aba ativa">
     <div class="card">
       <h2>Registrar Foguete</h2>
@@ -41,7 +42,7 @@
     </div>
   </section>
 
-  <!--SATÉLITES-->
+  <!--satelite-->
   <section id="satelites" class="aba">
     <div class="card">
       <h2>Registrar Satélite</h2>
@@ -78,7 +79,7 @@
     </div>
   </section>
 
-  <!--HANGAR-->
+  <!--hangar-->
   <section id="hangar" class="aba">
     <h2>🚀 Foguetes <span id="qtd-foguetes" class="badge">0</span></h2>
     <div id="lista-foguetes"><p class="vazio">Nenhum foguete registrado.</p></div>
@@ -87,10 +88,10 @@
     <div id="lista-satelites"><p class="vazio">Nenhum satélite registrado.</p></div>
   </section>
 
-  <!--SIMULAÇÃO LANÇAMENTO-->
+  <!--simulacao lancar-->
   <section id="simulacao" class="aba">
 
-    <!--DADOS DO LANÇAMENTO-->
+    <!--dados lancar-->
     <div id="telemetria" style="display:none" class="telemetria">
       <div class="tele"><span class="tele-label">Combustível</span><span id="t-comb" class="tele-valor">--</span> L</div>
       <div class="tele"><span class="tele-label">Temperatura</span><span id="t-temp" class="tele-valor">--</span> °C</div>
@@ -112,6 +113,19 @@
     </div>
   </section>
 
+   <!--trajetoria-->
+<section id="trajetoria" class="aba">
+  <div class="card">
+    <h2>📡 Trajetória de Lançamento</h2>
+    <div class="controles">
+      <select id="traj-foguete"><option value="">-- Selecionar Foguete --</option></select>
+      <button class="btn azul" onclick="mostrarTrajetoria()">▶ Simular Trajetória</button>
+      <button class="btn cinza" onclick="limparTrajetoria()">✕ Limpar</button>
+    </div>
+    <div id="traj-info" class="traj-info" style="display:none"></div>
+    <div id="traj-container"><p class="vazio">Selecione um foguete para visualizar a trajetória.</p></div>
+  </div>
+</section>
   <script src="script.js"></script>
 </body>
 </html>
