@@ -51,7 +51,7 @@ function registrarSatelite() {
   const tempo  = document.getElementById('s-tempo').value;
 
   if (!nome || isNaN(massa) || isNaN(energia)) {
-    mostrarAlerta('alerta-satelite', '⚠ Preencha todos os campos.', 'erro');
+    mostrarAlerta('alerta-satelite', ' Preencha todos os campos.', 'erro');
     return;
   }
 
