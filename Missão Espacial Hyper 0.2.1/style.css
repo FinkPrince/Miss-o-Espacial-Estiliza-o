@@ -1,4 +1,4 @@
-/* ── cor ─── */
+/* ── Variáveis ── */
 :root {
   --fundo:    #060b14;
   --card:     #0d1a2e;
@@ -12,10 +12,9 @@
   --texto2:   #7aadce;
   --cinza:    #4a7a9b;
 }
-
-/* ── Reset e base ─── */
+ 
+/* ── Base ── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
   background: var(--fundo);
   color: var(--texto);
@@ -25,7 +24,8 @@ body {
   max-width: 900px;
   margin: 0 auto;
 }
-/* ── header ─── */
+ 
+/* ── Header ── */
 header {
   text-align: center;
   padding: 24px 0 20px;
@@ -34,7 +34,8 @@ header {
 }
 header h1 { font-size: 22px; color: var(--azul); letter-spacing: 3px; }
 header p  { font-size: 11px; color: var(--cinza); margin-top: 6px; letter-spacing: 4px; }
-/* ── Navegação ─── */
+ 
+/* ── Nav ── */
 nav {
   display: flex;
   gap: 4px;
@@ -54,13 +55,14 @@ nav button {
   cursor: pointer;
   white-space: nowrap;
 }
-nav button:hover { color: var(--texto2); }
-nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
-/* ── Abas ─── */
-.aba        { display: none; }
-.aba.ativa  { display: block; }
-
-/* ── Card ──── */
+nav button:hover  { color: var(--texto2); }
+nav button.ativo  { color: var(--azul); border-bottom-color: var(--azul); }
+ 
+/* ── Abas ── */
+.aba { display: none; }
+.aba.ativa { display: block; }
+ 
+/* ── Card ── */
 .card {
   background: var(--card);
   border: 1px solid var(--borda);
@@ -76,7 +78,8 @@ nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
   margin-bottom: 16px;
   text-transform: uppercase;
 }
-/* ── Formulário ─── */
+ 
+/* ── Formulário ── */
 .formulario {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -93,7 +96,8 @@ nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
   text-transform: uppercase;
 }
 .formulario input,
-.formulario select {
+.formulario select,
+.controles select {
   background: #0f1e35;
   border: 1px solid var(--borda);
   border-radius: 3px;
@@ -104,13 +108,13 @@ nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
   outline: none;
 }
 .formulario input:focus,
-.formulario select:focus { border-color: var(--azul); }
-
-/* Remove setas dos campos numéricos */
+.formulario select:focus,
+.controles select:focus { border-color: var(--azul); }
+input[type="number"] { -moz-appearance: textfield; }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
-input[type="number"] { -moz-appearance: textfield; }
-/* ── buttons ──── */
+ 
+/* ── Botões ── */
 .btn {
   border: 1px solid;
   border-radius: 3px;
@@ -120,33 +124,22 @@ input[type="number"] { -moz-appearance: textfield; }
   letter-spacing: 2px;
   padding: 10px 22px;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: opacity .2s;
 }
-.btn:hover  { opacity: 0.8; }
-.btn.azul   { color: var(--azul);    border-color: var(--azul); }
-.btn.verde  { color: var(--verde);   border-color: var(--verde); }
+.btn:hover    { opacity: .8; }
+.btn.azul     { color: var(--azul);     border-color: var(--azul); }
+.btn.verde    { color: var(--verde);    border-color: var(--verde); }
 .btn.vermelho { color: var(--vermelho); border-color: var(--vermelho); }
-.btn.cinza  { color: var(--cinza);   border-color: var(--cinza); }
-/* ── Alertas ─── */
-.alerta {
-  font-size: 12px;
-  padding: 8px 12px;
-  border-radius: 3px;
-  margin-bottom: 14px;
-  display: none;
-}
-.alerta.ok   { display: block; color: var(--verde);   border: 1px solid var(--verde);   background: rgba(0,255,157,.05); }
-.alerta.erro { display: block; color: var(--vermelho); border: 1px solid var(--vermelho); background: rgba(255,61,90,.05); }
-
-/* ── Hangar ─── */
+.btn.cinza    { color: var(--cinza);    border-color: var(--cinza); }
+ 
+/* ── Alertas ── */
+.alerta { font-size: 12px; padding: 8px 12px; border-radius: 3px; margin-bottom: 14px; display: none; }
+.alerta.ok   { display:block; color:var(--verde);    border:1px solid var(--verde);    background:rgba(0,255,157,.05); }
+.alerta.erro { display:block; color:var(--vermelho); border:1px solid var(--vermelho); background:rgba(255,61,90,.05); }
+ 
+/* ── Hangar ── */
 h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 14px; }
-
-.vazio {
-  color: var(--cinza);
-  font-size: 12px;
-  padding: 30px;
-  text-align: center;
-}
+.vazio { color: var(--cinza); font-size: 12px; padding: 30px; text-align: center; }
 .item {
   background: #0c1626;
   border: 1px solid var(--borda);
@@ -160,7 +153,6 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 }
 .item strong { font-size: 14px; color: var(--texto); width: 100%; }
 .item span   { font-size: 12px; color: var(--texto2); }
-
 .badge {
   font-size: 10px;
   color: var(--azul);
@@ -169,7 +161,8 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   padding: 2px 8px;
   border-radius: 2px;
 }
-/* ── informacoes ─── */
+ 
+/* ── Telemetria ── */
 .telemetria {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -187,7 +180,8 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 }
 .tele-label { font-size: 10px; color: var(--cinza); letter-spacing: 2px; text-transform: uppercase; }
 .tele-valor { font-size: 20px; font-weight: bold; color: var(--verde); }
-/* ── Terminal ─── */
+ 
+/* ── Terminal ── */
 .controles {
   display: flex;
   gap: 10px;
@@ -195,18 +189,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   align-items: center;
   margin-bottom: 14px;
 }
-.controles select {
-  background: #0f1e35;
-  border: 1px solid var(--borda);
-  border-radius: 3px;
-  color: var(--texto);
-  font-family: monospace;
-  font-size: 13px;
-  padding: 8px 10px;
-  outline: none;
-  flex: 1;
-  min-width: 160px;
-}
+.controles select { flex: 1; min-width: 160px; }
 #terminal {
   background: #02080f;
   border: 1px solid var(--borda);
@@ -222,21 +205,15 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   line-height: 1.8;
   color: var(--texto2);
   opacity: 0;
-  animation: aparecer 0.3s forwards;
+  animation: aparecer .3s forwards;
 }
 #terminal span.azul    { color: var(--azul); }
 #terminal span.verde   { color: var(--verde); }
 #terminal span.amarelo { color: var(--amarelo); }
 #terminal span.vermelho{ color: var(--vermelho); }
-
 @keyframes aparecer { to { opacity: 1; } }
-
-/* ── acao ──── */
-@media (max-width: 600px) {
-  .formulario { grid-template-columns: 1fr; }
-  .telemetria { grid-template-columns: 1fr 1fr; }
-}
-/* ── Trajetória ──── */
+ 
+/* ── Trajetória ── */
 .traj-svg {
   width: 100%;
   border-radius: 4px;
@@ -257,3 +234,98 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   margin-top: 14px;
 }
 .traj-info b { color: var(--azul); }
+ 
+/* ── Planetas ── */
+.planeta-esquerda,
+.planeta-direita {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 0;
+}
+.planeta-esquerda { left: 200px; }
+.planeta-direita  { right: 200px; }
+.planeta-label { font-size: 0px; letter-spacing: 2px; color: rgba(0,200,255,.35); text-transform: uppercase; }
+ 
+/* Terra */
+.earth {
+  width: 250px; height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 28px rgba(26,111,255,.3), inset -12px -4px 0 rgba(0,0,0,.25);
+  animation: glow-earth 3s ease-in-out infinite alternate;
+}
+.earth-surface {
+  width: 200%; height: 100%;
+  background:
+    radial-gradient(ellipse 80px 70px at 28px 38px,  #2d6a2d 0%, transparent 100%),
+    radial-gradient(ellipse 80px 70px at 58px 52px,  #3a7a3a 0%, transparent 100%),
+    radial-gradient(ellipse 80px 70px at 108px 28px, #2a622a 0%, transparent 100%),
+    radial-gradient(ellipse 80px 70px at 136px 60px, #346034 0%, transparent 100%),
+    radial-gradient(ellipse 80px 70px at 20px 70px,  #3a7a3a 0%, transparent 100%),
+    radial-gradient(ellipse 80px 70px at 75px 80px,  #2d6a2d 0%, transparent 100%),
+    radial-gradient(ellipse 80px 77px at 145px 20px, #346034 0%, transparent 100%),
+    radial-gradient(ellipse 85px 70px at 170px 75px, #2a622a 0%, transparent 100%),
+    radial-gradient(ellipse 80px 70px at 50px 20px,  #3a7a3a 0%, transparent 100%),
+    radial-gradient(ellipse 80px 70px at 120px 75px, #2d6a2d 0%, transparent 100%),
+
+    linear-gradient(180deg, #1a4a8a 0%, #1e5aa8 40%, #1a4a8a 70%, #152f66 100%);
+  animation: spin 12s linear infinite;
+}
+.earth-shine {
+  position: absolute;
+  top: 7px; left: 9px;
+  width: 24px; height: 17px;
+  background: radial-gradient(ellipse, rgba(255,255,255,.25) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+}
+ 
+/* Saturno */
+.saturn-container {
+  width: 210px; height: 170px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.saturn-body {
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 22px rgba(200,164,88,.3), inset -10px -4px 0 rgba(0,0,0,.25);
+  animation: glow-saturn 4s ease-in-out infinite alternate;
+}
+.saturn-surface {
+  width: 200%; height: 140%;
+  background: linear-gradient(180deg, #d4a84b 0%, #c49a3a 15%, #e8c878 28%, #c8952e 42%, #dab050 56%, #b8882a 70%, #c89840 85%, #a87520 100%);
+  animation: spin 18s linear infinite;
+}
+.saturn-ring {
+  position: absolute;
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  border: 5px solid transparent;
+  animation: spin-ring 18s linear infinite;
+}
+.saturn-ring.back  { width:350px; height:26px; border-top: 5px solid rgba(200,164,88,.5); z-index:1; }
+.saturn-ring.mid   { width:270px; height:20px; border-top: 4px solid rgba(184,144,64,.6); z-index:1; border-width:4px; }
+.saturn-ring.front { width:220px; height:26px; border-bottom: 5px solid rgba(200,164,88,.7); z-index:3; }
+ 
+/* Animações compartilhadas */
+@keyframes spin         { from{transform:translateX(0)}       to{transform:translateX(-50%)} }
+@keyframes spin-ring    { from{transform:translate(-50%,-50%) rotateX(70deg) rotateZ(0)}   to{transform:translate(-50%,-50%) rotateX(70deg) rotateZ(360deg)} }
+@keyframes glow-earth   { from{box-shadow:0 0 18px rgba(26,111,255,.2),inset -12px -4px 0 rgba(0,0,0,.25)} to{box-shadow:0 0 38px rgba(26,111,255,.5),inset -12px -4px 0 rgba(0,0,0,.25)} }
+@keyframes glow-saturn  { from{box-shadow:0 0 12px rgba(200,164,88,.2),inset -10px -4px 0 rgba(0,0,0,.25)} to{box-shadow:0 0 32px rgba(200,164,88,.5),inset -10px -4px 0 rgba(0,0,0,.25)} }
+ 
+/* ── Responsivo ── */
+@media (max-width: 1100px) { .planeta-esquerda, .planeta-direita { display: none; } }
+@media (max-width: 600px)  { .formulario { grid-template-columns: 1fr; } .telemetria { grid-template-columns: 1fr 1fr; } }
