@@ -72,7 +72,7 @@ function renderizarHangar() {
       ? '<p class="vazio">Nenhum foguete registrado.</p>'
       : foguetes.map(f => `
           <div class="item">
-            <strong>🚀 ${f.nome}</strong>
+            <strong> ${f.nome}</strong>
             <span>Carga: ${f.carga} kg</span>
             <span>Combustível: ${f.combustivel} L</span>
             <span>Temperatura: ${f.temperatura}°C</span>
@@ -84,7 +84,7 @@ function renderizarHangar() {
       ? '<p class="vazio">Nenhum satélite registrado.</p>'
       : satelites.map(s => `
           <div class="item">
-            <strong>🛰️ ${s.nome}</strong>
+            <strong> ${s.nome}</strong>
             <span>Massa: ${s.massa} kg</span>
             <span>Órbita: ${s.orbita}</span>
             <span>Energia: ${s.energia}%</span>
@@ -137,7 +137,7 @@ function simularLancamento() {
   const sucesso = f.combustivel > 400;
 
   if (sucesso) {
-    adicionar('> 🔥 IGNIÇÃO! LANÇAMENTO BEM-SUCEDIDO! ✓', 'verde');
+    adicionar('>   LANÇAMENTO BEM-SUCEDIDO! ', 'verde');
     f.status = 'Lançado';
 
     if (s) {
@@ -194,7 +194,7 @@ function mostrarTrajetoria() {
   // Pontos da trajetória: Terra → Atmosfera → Órbita (variam por índice do foguete)
   const seed  = parseInt(fi) + 1;
   const pontos = [
-    { x: 80,  y: 340, label: '🌍 Terra' },
+    { x: 80,  y: 340, label: ' Terra' },
     { x: 80 + seed * 60,  y: 260 - seed * 10, label: ' Ignição' },
     { x: 200 + seed * 50, y: 180 - seed * 15, label: ' Atmosfera' },
     { x: 340 + seed * 40, y: 100 - seed * 5,  label: ' Órbita' },
@@ -249,7 +249,7 @@ function mostrarTrajetoria() {
         <animateMotion dur="1.8s" fill="freeze" rotate="auto">
           <mpath href="#traj-path"/>
         </animateMotion>
-        🚀
+        
       </text>
  
       <!-- Nome do foguete -->
@@ -260,7 +260,7 @@ function mostrarTrajetoria() {
   const info = document.getElementById('traj-info');
   info.style.display = 'flex';
   info.innerHTML = `
-    <span>🚀 <b>${f.nome}</b></span>
+    <span> <b>${f.nome}</b></span>
     <span>Combustível: ${f.combustivel} L</span>
     <span>Temperatura: ${f.temperatura}°C</span>
     <span>Status: ${f.status}</span>`;
