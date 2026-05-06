@@ -57,13 +57,13 @@ function renderizarHangar() {
   document.getElementById('qtd-satelites').textContent = satelites.length;
  
   document.getElementById('lista-foguetes').innerHTML = foguetes.length
-    ? foguetes.map(f => `<div class="item"><strong>🚀 ${f.nome}</strong>
+    ? foguetes.map(f => `<div class="item"><strong> ${f.nome}</strong>
         <span>Carga: ${f.carga} kg</span><span>Combustível: ${f.combustivel} L</span>
         <span>Temperatura: ${f.temperatura}°C</span><span class="badge">${f.status}</span></div>`).join('')
     : '<p class="vazio">Nenhum foguete registrado.</p>';
  
   document.getElementById('lista-satelites').innerHTML = satelites.length
-    ? satelites.map(s => `<div class="item"><strong>🛰️ ${s.nome}</strong>
+    ? satelites.map(s => `<div class="item"><strong> ${s.nome}</strong>
         <span>Massa: ${s.massa} kg</span><span>Órbita: ${s.orbita}</span>
         <span>Energia: ${s.energia}%</span><span>Função: ${s.obs}</span>
         <span class="badge">${s.status}</span></div>`).join('')
@@ -185,7 +185,7 @@ function mostrarTrajetoria() {
       </path>
       ${pins}
       <text font-size="22" text-anchor="middle">
-        <animateMotion dur="1.8s" fill="freeze" rotate="auto"><mpath href="#traj-path"/></animateMotion>🚀
+        <animateMotion dur="1.8s" fill="freeze" rotate="auto"><mpath href="#traj-path"/></animateMotion>
       </text>
       <text x="300" y="370" text-anchor="middle" fill="rgba(0,200,255,0.4)" font-size="11" font-family="monospace" letter-spacing="3">${f.nome.toUpperCase()}</text>
     </svg>`;
