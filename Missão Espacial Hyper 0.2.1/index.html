@@ -9,16 +9,16 @@
 <body>
 
   <header>
-    <h1>🚀 Centro de Controle Espacial</h1>
+    <h1> Centro de Controle Espacial</h1>
     <p>Missão Supernova Ederson Skywalker !</p>
   </header>
 
   <nav>
-    <button class="ativo" onclick="trocarAba('foguetes', this)">🚀 Foguetes</button>
-    <button onclick="trocarAba('satelites', this)">🛰️ Satélites</button>
-    <button onclick="trocarAba('hangar', this)">🔧 Hangar</button>
-    <button onclick="trocarAba('simulacao', this)">🔥 Simulação</button>
-     <button onclick="trocarAba('trajetoria', this)">📡 Trajetória</button>
+    <button class="ativo" onclick="trocarAba('foguetes', this)"> Foguetes</button>
+    <button onclick="trocarAba('satelites', this)"> Satélites</button>
+    <button onclick="trocarAba('hangar', this)"> Hangar</button>
+    <button onclick="trocarAba('simulacao', this)"> Simulação</button>
+     <button onclick="trocarAba('trajetoria', this)"> Trajetória</button>
   </nav>
 
   <!--foguete-->
@@ -84,7 +84,7 @@
     <h2>🚀 Foguetes <span id="qtd-foguetes" class="badge">0</span></h2>
     <div id="lista-foguetes"><p class="vazio">Nenhum foguete registrado.</p></div>
 
-    <h2 style="margin-top:32px">🛰️ Satélites <span id="qtd-satelites" class="badge">0</span></h2>
+    <h2 style="margin-top:32px"> Satélites <span id="qtd-satelites" class="badge">0</span></h2>
     <div id="lista-satelites"><p class="vazio">Nenhum satélite registrado.</p></div>
   </section>
 
@@ -100,11 +100,11 @@
     </div>
 
     <div class="card">
-      <h2>🔥 Controle de Lançamento</h2>
+      <h2> Controle de Lançamento</h2>
       <div class="controles">
         <select id="sim-foguete"><option value="">-- Selecionar Foguete --</option></select>
         <select id="sim-satelite"><option value="">-- Selecionar Satélite --</option></select>
-        <button class="btn vermelho" onclick="simularLancamento()">🔥 Lançar</button>
+        <button class="btn vermelho" onclick="simularLancamento()"> Lançar</button>
         <button class="btn cinza" onclick="limparSimulacao()">✕ Limpar</button>
       </div>
       <div id="terminal">
