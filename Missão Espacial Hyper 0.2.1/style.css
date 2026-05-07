@@ -12,11 +12,11 @@
   --texto2:   #7aadce;
   --cinza:    #4a7a9b;
 }
- 
+
 /* ── Base ── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  background: var(--fundo);
+  background: transparent;
   color: var(--texto);
   font-family: monospace;
   font-size: 15px;
@@ -24,7 +24,27 @@ body {
   max-width: 900px;
   margin: 0 auto;
 }
- 
+
+/* Fundo estrelado cobrindo toda a tela */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #02080f;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, #fff 0%, transparent 100%),
+    radial-gradient(2px 2px at 25% 40%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 8%,  #fff 0%, transparent 100%),
+    radial-gradient(2px 2px at 70% 30%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 60%, #fff 0%, transparent 100%),
+    radial-gradient(2px 2px at 15% 75%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 85%, #fff 0%, transparent 100%),
+    radial-gradient(2px 2px at 40% 55%, #fff 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 20%, #fff 0%, transparent 100%),
+    radial-gradient(2px 2px at 80% 90%, #fff 0%, transparent 100%);
+}
+
 /* ── Header ── */
 header {
   text-align: center;
@@ -34,7 +54,7 @@ header {
 }
 header h1 { font-size: 22px; color: var(--azul); letter-spacing: 3px; }
 header p  { font-size: 11px; color: var(--cinza); margin-top: 6px; letter-spacing: 4px; }
- 
+
 /* ── Nav ── */
 nav {
   display: flex;
@@ -55,13 +75,13 @@ nav button {
   cursor: pointer;
   white-space: nowrap;
 }
-nav button:hover  { color: var(--texto2); }
-nav button.ativo  { color: var(--azul); border-bottom-color: var(--azul); }
- 
+nav button:hover { color: var(--texto2); }
+nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
+
 /* ── Abas ── */
 .aba { display: none; }
 .aba.ativa { display: block; }
- 
+
 /* ── Card ── */
 .card {
   background: var(--card);
@@ -78,7 +98,7 @@ nav button.ativo  { color: var(--azul); border-bottom-color: var(--azul); }
   margin-bottom: 16px;
   text-transform: uppercase;
 }
- 
+
 /* ── Formulário ── */
 .formulario {
   display: grid;
@@ -113,7 +133,7 @@ nav button.ativo  { color: var(--azul); border-bottom-color: var(--azul); }
 input[type="number"] { -moz-appearance: textfield; }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
- 
+
 /* ── Botões ── */
 .btn {
   border: 1px solid;
@@ -131,12 +151,12 @@ input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
 .btn.verde    { color: var(--verde);    border-color: var(--verde); }
 .btn.vermelho { color: var(--vermelho); border-color: var(--vermelho); }
 .btn.cinza    { color: var(--cinza);    border-color: var(--cinza); }
- 
+
 /* ── Alertas ── */
 .alerta { font-size: 12px; padding: 8px 12px; border-radius: 3px; margin-bottom: 14px; display: none; }
 .alerta.ok   { display:block; color:var(--verde);    border:1px solid var(--verde);    background:rgba(0,255,157,.05); }
 .alerta.erro { display:block; color:var(--vermelho); border:1px solid var(--vermelho); background:rgba(255,61,90,.05); }
- 
+
 /* ── Hangar ── */
 h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 14px; }
 .vazio { color: var(--cinza); font-size: 12px; padding: 30px; text-align: center; }
@@ -161,7 +181,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   padding: 2px 8px;
   border-radius: 2px;
 }
- 
+
 /* ── Telemetria ── */
 .telemetria {
   display: grid;
@@ -180,7 +200,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 }
 .tele-label { font-size: 10px; color: var(--cinza); letter-spacing: 2px; text-transform: uppercase; }
 .tele-valor { font-size: 20px; font-weight: bold; color: var(--verde); }
- 
+
 /* ── Terminal ── */
 .controles {
   display: flex;
@@ -212,7 +232,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 #terminal span.amarelo { color: var(--amarelo); }
 #terminal span.vermelho{ color: var(--vermelho); }
 @keyframes aparecer { to { opacity: 1; } }
- 
+
 /* ── Trajetória ── */
 .traj-svg {
   width: 100%;
@@ -234,4 +254,106 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   margin-top: 14px;
 }
 .traj-info b { color: var(--azul); }
- 
+
+/* ── Satélite ── */
+.space-section {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--borda);
+  margin-top: 40px;
+}
+
+.satelite-wrapper {
+  z-index: 1;
+  position: relative;
+  animation: flutuar 6s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0)     rotate(-2deg); }
+  50%       { transform: translateY(-24px) rotate(2deg); }
+}
+
+.satelite {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.painel {
+  width: 90px;
+  height: 60px;
+  background:
+    repeating-linear-gradient(90deg, #0066bb 0px, #0066bb 1px, transparent 1px, transparent 44px),
+    repeating-linear-gradient(0deg,  #0066bb 0px, #0066bb 1px, transparent 1px, transparent 19px),
+    #003a6e;
+  border: 2px solid #1a4a7a;
+  border-radius: 4px;
+}
+
+.corpo {
+  width: 70px;
+  height: 70px;
+  background: #0d1a2e;
+  border: 2px solid #1a5a8a;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
+.antena {
+  width: 2px;
+  height: 22px;
+  background: #00c8ff;
+  position: absolute;
+  top: -24px;
+}
+.antena::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border: 2px solid #00c8ff;
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  left: -3px;
+}
+
+.janela {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #00c8ff;
+  background: #001828;
+  box-shadow: 0 0 8px rgba(0,200,255,0.4);
+}
+
+.led {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00ff9d;
+  box-shadow: 0 0 6px #00ff9d;
+  animation: piscar 1.5s ease-in-out infinite;
+}
+
+@keyframes piscar {
+  50% { opacity: 0.2; }
+}
+
+.space-label {
+  margin-top: 20px;
+  color: var(--azul);
+  font-size: 11px;
+  letter-spacing: 4px;
+  opacity: 0.45;
+  z-index: 1;
+  position: relative;
+}
