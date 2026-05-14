@@ -17,9 +17,7 @@ public class SimulacaoService {
         this.fogueteService  = fogueteService;
         this.sateliteService = sateliteService;
     }
-
-    // ── Records de resposta ──────────────────────────
-
+    // ── resposta ───
     public record LogEntry(String txt, String cor) {}
 
     public record ResultadoLancamento(
@@ -30,7 +28,6 @@ public class SimulacaoService {
             String  statusMissao,
             List<LogEntry> log
     ) {}
-
     public record PontoTrajetoria(double x, double y, String label) {}
 
     public record TrajetoriaResponse(
@@ -40,9 +37,7 @@ public class SimulacaoService {
             String status,
             List<PontoTrajetoria> pontos
     ) {}
-
-    // ── Simulação de Lançamento ──────────────────────
-
+    // ──  Lançamento ───
     public ResultadoLancamento simular(Long fogueteId, Long sateliteId) {
 
         Foguete  f = fogueteService.buscar(fogueteId);
@@ -104,9 +99,7 @@ public class SimulacaoService {
                 log
         );
     }
-
-    // ── Trajetória ───────────────────────────────────
-
+    // ── Trajetória ────
     public TrajetoriaResponse calcularTrajetoria(Long fogueteId) {
 
         Foguete f    = fogueteService.buscar(fogueteId);
@@ -118,7 +111,6 @@ public class SimulacaoService {
                 new PontoTrajetoria(200 + seed * 50,     180 - seed * 15, "Atmosfera"),
                 new PontoTrajetoria(340 + seed * 40,     100 - seed * 5,  "Órbita")
         );
-
         return new TrajetoriaResponse(
                 f.getNome(),
                 f.getCombustivel(),
