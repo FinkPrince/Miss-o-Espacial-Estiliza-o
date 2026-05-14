@@ -19,9 +19,6 @@ public class SimulacaoController {
         this.service = service;
     }
 
-    // POST /api/simulacao/lancar
-    // Body: { "fogueteId": 1, "sateliteId": 2 }
-    //   sateliteId é opcional — omita ou envie null para lançar sem satélite
     @PostMapping("/lancar")
     public ResponseEntity<ResultadoLancamento> lancar(@RequestBody Map<String, Object> body) {
         Long fogueteId  = toLong(body.get("fogueteId"));
@@ -31,7 +28,6 @@ public class SimulacaoController {
         return ResponseEntity.ok(service.simular(fogueteId, sateliteId));
     }
 
-    // GET /api/simulacao/trajetoria/{fogueteId}
     @GetMapping("/trajetoria/{fogueteId}")
     public ResponseEntity<TrajetoriaResponse> trajetoria(@PathVariable Long fogueteId) {
         return ResponseEntity.ok(service.calcularTrajetoria(fogueteId));
