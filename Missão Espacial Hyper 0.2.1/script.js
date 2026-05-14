@@ -1,6 +1,18 @@
-const foguetes  = [];
+const API = 'http://localhost:8080/foguetes';
+ 
+let foguetes  = [];
 const satelites = [];
  
+async function carregarFoguetes() {
+  try {
+    const res = await fetch(API);
+    foguetes = await res.json();
+    preencherSelects();
+    preencherSelectTrajetoria();
+  } catch (e) {
+    console.error('Erro ao carregar foguetes:', e);
+  }
+}
 // ── Navegação ──
 function trocarAba(id, botao) {
   document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
@@ -11,8 +23,7 @@ function trocarAba(id, botao) {
   if (id === 'simulacao')  preencherSelects();
   if (id === 'trajetoria') preencherSelectTrajetoria();
 }
- 
-// ── Alerta temporário ──
+// ── Alerta ──
 function mostrarAlerta(id, msg, tipo) {
   const el = document.getElementById(id);
   el.textContent = msg;
@@ -20,7 +31,6 @@ function mostrarAlerta(id, msg, tipo) {
   setTimeout(() => el.className = 'alerta', 3000);
 }
  
-// ── Helper: lê campos e valida ──
 function lerCampos(ids) {
   return ids.map(id => {
     const el = document.getElementById(id);
@@ -28,19 +38,29 @@ function lerCampos(ids) {
   });
 }
  
-// ── Registrar foguete ──
-function registrarFoguete() {
+// ── Registrar foguete 
+async function registrarFoguete() {
   const [nome, carga, comb, temp, status] = lerCampos(['f-nome','f-carga','f-combustivel','f-temperatura','f-status']);
   if (!nome || [carga,comb,temp].some(v => v === '' || isNaN(+v)))
     return mostrarAlerta('alerta-foguete', '⚠ Preencha todos os campos.', 'erro');
  
-  foguetes.push({ nome, carga:+carga, combustivel:+comb, temperatura:+temp, status });
-  mostrarAlerta('alerta-foguete', `✓ Foguete "${nome}" registrado!`, 'ok');
-  preencherSelectTrajetoria();
-  ['f-nome','f-carga','f-combustivel','f-temperatura'].forEach(id => document.getElementById(id).value = '');
+  try {
+    const res = await fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, carga: +carga, combustivel: +comb, temperatura: +temp, status })
+    });
+    const novoFoguete = await res.json();
+    foguetes.push(novoFoguete);
+    mostrarAlerta('alerta-foguete', `✓ Foguete "${nome}" registrado!`, 'ok');
+    preencherSelects();
+    preencherSelectTrajetoria();
+    ['f-nome','f-carga','f-combustivel','f-temperatura'].forEach(id => document.getElementById(id).value = '');
+  } catch (e) {
+    mostrarAlerta('alerta-foguete', '✗ Erro ao conectar com o servidor.', 'erro');
+  }
 }
- 
-// ── Registrar satélite ──
+// ── Registrar satélite  ──
 function registrarSatelite() {
   const [nome, massa, energia, orbita, obs, tempo] = lerCampos(['s-nome','s-massa','s-energia','s-orbita','s-obs','s-tempo']);
   if (!nome || [massa,energia].some(v => v === '' || isNaN(+v)))
@@ -50,7 +70,6 @@ function registrarSatelite() {
   mostrarAlerta('alerta-satelite', `✓ Satélite "${nome}" registrado!`, 'ok');
   ['s-nome','s-massa','s-energia'].forEach(id => document.getElementById(id).value = '');
 }
- 
 // ── Renderizar Hangar ──
 function renderizarHangar() {
   document.getElementById('qtd-foguetes').textContent  = foguetes.length;
@@ -69,7 +88,6 @@ function renderizarHangar() {
         <span class="badge">${s.status}</span></div>`).join('')
     : '<p class="vazio">Nenhum satélite registrado.</p>';
 }
- 
 // ── Preencher selects ──
 function opcoes(arr) {
   return arr.map((x, i) => `<option value="${i}">${x.nome}</option>`).join('');
@@ -81,7 +99,6 @@ function preencherSelects() {
 function preencherSelectTrajetoria() {
   document.getElementById('traj-foguete').innerHTML = '<option value="">-- Selecionar Foguete --</option>' + opcoes(foguetes);
 }
- 
 // ── Simulação ──
 function simularLancamento() {
   const fi = document.getElementById('sim-foguete').value;
@@ -134,12 +151,10 @@ function simularLancamento() {
   stEl.textContent = ok ? '✓ OK' : '✗ FALHA';
   stEl.style.color = ok ? '#00ff9d' : '#ff3d5a';
 }
- 
 function limparSimulacao() {
   document.getElementById('terminal').innerHTML = '<span class="azul">// SISTEMA PRONTO. AGUARDANDO INSTRUÇÃO...</span>';
   document.getElementById('telemetria').style.display = 'none';
 }
- 
 // ── Trajetória ──
 function mostrarTrajetoria() {
   const fi = document.getElementById('traj-foguete').value;
@@ -159,7 +174,6 @@ function mostrarTrajetoria() {
     const cx = (pts[i-1].x + pts[i].x) / 2;
     d += ` Q ${cx} ${pts[i-1].y} ${pts[i].x} ${pts[i].y}`;
   }
- 
   const pins = pts.map(p => `
     <circle cx="${p.x}" cy="${p.y}" r="6" fill="#060b14" stroke="#00c8ff" stroke-width="2"/>
     <circle cx="${p.x}" cy="${p.y}" r="2" fill="#00c8ff"/>
@@ -192,12 +206,12 @@ function mostrarTrajetoria() {
  
   const info = document.getElementById('traj-info');
   info.style.display = 'flex';
-  info.innerHTML = `<span>🚀 <b>${f.nome}</b></span><span>Combustível: ${f.combustivel} L</span>
+  info.innerHTML = `<span> <b>${f.nome}</b></span><span>Combustível: ${f.combustivel} L</span>
     <span>Temperatura: ${f.temperatura}°C</span><span>Status: ${f.status}</span>`;
 }
- 
 function limparTrajetoria() {
   document.getElementById('traj-container').innerHTML = '<p class="vazio">Selecione um foguete para visualizar a trajetória.</p>';
   document.getElementById('traj-info').style.display = 'none';
 }
- 
+// ── Iniciar ──
+carregarFoguetes();
