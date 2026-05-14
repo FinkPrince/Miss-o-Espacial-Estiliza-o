@@ -18,21 +18,15 @@ public class SateliteController {
     public SateliteController(SateliteService service) {
         this.service = service;
     }
-
-    // GET /api/satelites
     @GetMapping
     public List<Satelite> listar() {
         return service.listar();
     }
-
-    // GET /api/satelites/{id}
     @GetMapping("/{id}")
     public ResponseEntity<Satelite> buscar(@PathVariable Long id) {
         return ResponseEntity.ok(service.buscar(id));
     }
 
-    // POST /api/satelites
-    // Body: { "nome":"STARLINK-01", "massa":250, "energia":85, "orbita":"LEO", "funcao":"Comunicação", "tempoOrbita":"1 ano e 4 meses" }
     @PostMapping
     public ResponseEntity<Satelite> registrar(@RequestBody Map<String, Object> body) {
         Satelite salvo = service.registrar(
@@ -45,8 +39,6 @@ public class SateliteController {
         );
         return ResponseEntity.status(201).body(salvo);
     }
-
-    // DELETE /api/satelites/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         service.deletar(id);
