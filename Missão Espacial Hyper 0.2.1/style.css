@@ -12,7 +12,6 @@
   --texto2:   #7aadce;
   --cinza:    #4a7a9b;
 }
-
 /* ── Base ── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -24,8 +23,7 @@ body {
   max-width: 900px;
   margin: 0 auto;
 }
-
-/* Fundo estrelado cobrindo toda a tela */
+/* Fundo estrelado */
 body::before {
   content: '';
   position: fixed;
@@ -44,7 +42,6 @@ body::before {
     radial-gradient(1px 1px at 65% 20%, #fff 0%, transparent 100%),
     radial-gradient(2px 2px at 80% 90%, #fff 0%, transparent 100%);
 }
-
 /* ── Header ── */
 header {
   text-align: center;
@@ -98,7 +95,6 @@ nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
   margin-bottom: 16px;
   text-transform: uppercase;
 }
-
 /* ── Formulário ── */
 .formulario {
   display: grid;
@@ -181,7 +177,6 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   padding: 2px 8px;
   border-radius: 2px;
 }
-
 /* ── Telemetria ── */
 .telemetria {
   display: grid;
@@ -201,7 +196,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 .tele-label { font-size: 10px; color: var(--cinza); letter-spacing: 2px; text-transform: uppercase; }
 .tele-valor { font-size: 20px; font-weight: bold; color: var(--verde); }
 
-/* ── Terminal ── */
+/* ── Terminalzinho ── */
 .controles {
   display: flex;
   gap: 10px;
@@ -232,7 +227,6 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 #terminal span.amarelo { color: var(--amarelo); }
 #terminal span.vermelho{ color: var(--vermelho); }
 @keyframes aparecer { to { opacity: 1; } }
-
 /* ── Trajetória ── */
 .traj-svg {
   width: 100%;
@@ -255,7 +249,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 }
 .traj-info b { color: var(--azul); }
 
-/* ── Satélite ── */
+/* ── Satélite fofinho ── */
 .space-section {
   min-height: 300px;
   display: flex;
@@ -265,24 +259,20 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   border-top: 1px solid var(--borda);
   margin-top: 40px;
 }
-
 .satelite-wrapper {
   z-index: 1;
   position: relative;
   animation: flutuar 6s ease-in-out infinite;
 }
-
 @keyframes flutuar {
   0%, 100% { transform: translateY(0)     rotate(-2deg); }
   50%       { transform: translateY(-24px) rotate(2deg); }
 }
-
 .satelite {
   display: flex;
   align-items: center;
   gap: 6px;
 }
-
 .painel {
   width: 90px;
   height: 60px;
@@ -293,7 +283,6 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   border: 2px solid #1a4a7a;
   border-radius: 4px;
 }
-
 .corpo {
   width: 70px;
   height: 70px;
@@ -307,7 +296,6 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   gap: 8px;
   position: relative;
 }
-
 .antena {
   width: 2px;
   height: 22px;
@@ -325,7 +313,6 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   top: -10px;
   left: -3px;
 }
-
 .janela {
   width: 26px;
   height: 26px;
@@ -334,7 +321,6 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   background: #001828;
   box-shadow: 0 0 8px rgba(0,200,255,0.4);
 }
-
 .led {
   width: 7px;
   height: 7px;
@@ -343,11 +329,9 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   box-shadow: 0 0 6px #00ff9d;
   animation: piscar 1.5s ease-in-out infinite;
 }
-
 @keyframes piscar {
   50% { opacity: 0.2; }
 }
-
 .space-label {
   margin-top: 20px;
   color: var(--azul);
