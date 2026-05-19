@@ -14,6 +14,7 @@
 </header>
 
 <nav>
+  <button class="ativo" onclick="trocarAba('astronautas', this)">Astronautas</button>
   <button class="ativo" onclick="trocarAba('foguetes', this)">Foguetes</button>
   <button onclick="trocarAba('satelites', this)">Satélites</button>
   <button onclick="trocarAba('hangar', this)">Hangar</button>
@@ -21,6 +22,27 @@
   <button onclick="trocarAba('trajetoria', this)">Trajetória</button>
 </nav>
 
+<!-- Astronautas -->
+<section id="astronautas" class="aba ativa">
+  <div class="card">
+    <h2>Registrar Astronauta</h2>
+    <div id="alerta-astronauta" class="alerta"></div>
+    <div class="formulario">
+      <label>Nome<input id="a-nome" type="text" placeholder="Ex: Neil Armstrong"></label>
+      <label>Idade<input id="a-idade" type="number" placeholder="0"></label>
+      <label>Nacionalidade<input id="a-nac" type="text" placeholder="Ex: Brasileiro"></label>
+      <label>Especialização
+        <select id="a-esp">
+          <option>Desbravador do Cosmos</option>
+          <option>Marinheiro Estelar</option>
+          <option>Paladino Planetário</option>
+        </select>
+      </label>
+    </div>
+    <button class="btn azul" onclick="registrarAstronauta()">Registrar</button>
+  </div>
+</section>
+  
 <!-- Foguetes -->
 <section id="foguetes" class="aba ativa">
   <div class="card">
