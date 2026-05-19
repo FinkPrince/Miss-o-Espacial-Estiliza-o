@@ -2,6 +2,17 @@ const API = 'http://localhost:8080/foguetes';
  
 let foguetes  = [];
 const satelites = [];
+const astronautas = [];
+ 
+// ── Registrar astronauta ──
+function registrarAstronauta() {
+  const [nome, idade, nac, esp] = lerCampos(['a-nome','a-idade','a-nac','a-esp']);
+  if (!nome || !nac || idade === '' || isNaN(+idade))
+    return mostrarAlerta('alerta-astronauta', '⚠ Preencha todos os campos.', 'erro');
+  astronautas.push({ nome, idade:+idade, nac, esp });
+  mostrarAlerta('alerta-astronauta', `✓ Astronauta "${nome}" registrado!`, 'ok');
+  ['a-nome','a-idade','a-nac'].forEach(id => document.getElementById(id).value = '');
+}
  
 async function carregarFoguetes() {
   try {
