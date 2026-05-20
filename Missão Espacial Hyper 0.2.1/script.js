@@ -1,5 +1,5 @@
-const API_FOGUETES    = 'http://localhost:8080/foguetes';
-const API_ASTRONAUTAS = 'http://localhost:8080/astronautas';
+const API_FOGUETES    = 'http://localhost:8080/api/foguetes';
+const API_ASTRONAUTAS = 'http://localhost:8080/api/astronautas';
  
 let foguetes   = [];
 let astronautas = [];
@@ -73,8 +73,8 @@ function lerCampos(ids) {
 async function registrarFoguete() {
   const [nome, carga, comb, temp, status] = lerCampos(['f-nome','f-carga','f-combustivel','f-temperatura','f-status']);
   if (!nome || [carga,comb,temp].some(v => v === '' || isNaN(+v)))
-    return mostrarAlerta('alerta-foguete', '⚠ Preencha todos os campos.', 'erro');
- 
+    return mostrarAlerta('alerta-foguete', ' Preencha todos os campos.', 'erro');
+
   try {
     const res = await fetch(API_FOGUETES, {
       method: 'POST',
@@ -119,7 +119,7 @@ function renderizarHangar() {
   document.getElementById('qtd-satelites').textContent   = satelites.length;
  
   document.getElementById('lista-astronautas').innerHTML = astronautas.length
-    ? astronautas.map(a => `<div class="item"><strong>👨‍🚀 ${a.nome}</strong>
+    ? astronautas.map(a => `<div class="item"><strong> ${a.nome}</strong>
         <span>Idade: ${a.idade}</span><span>Nacionalidade: ${a.nac}</span>
         <span class="badge">${a.esp}</span></div>`).join('')
     : '<p class="vazio">Nenhum astronauta registrado.</p>';
