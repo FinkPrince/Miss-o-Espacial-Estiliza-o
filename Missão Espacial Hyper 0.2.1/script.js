@@ -105,10 +105,29 @@ function registrarSatelite() {
 }
  
 // ── Deletar foguete ──
-function deletarFoguete(i) {
+async function deletarFoguete(i) {
+  const f = foguetes[i];
+  try {
+    await fetch(`${API_FOGUETES}/${f.id}`, { method: 'DELETE' });
+  } catch (e) { console.warn('Erro ao deletar foguete:', e); }
   foguetes.splice(i, 1);
   preencherSelects();
   preencherSelectTrajetoria();
+  renderizarHangar();
+}
+// ── Deletar astronauta ──
+async function deletarAstronauta(i) {
+  const a = astronautas[i];
+  try {
+    await fetch(`${API_ASTRONAUTAS}/${a.id}`, { method: 'DELETE' });
+  } catch (e) { console.warn('Erro ao deletar astronauta:', e); }
+  astronautas.splice(i, 1);
+  renderizarHangar();
+}
+// ── Deletar satélite ──
+function deletarSatelite(i) {
+  satelites.splice(i, 1);
+  preencherSelects();
   renderizarHangar();
 }
  
@@ -119,10 +138,11 @@ function renderizarHangar() {
   document.getElementById('qtd-satelites').textContent   = satelites.length;
  
   document.getElementById('lista-astronautas').innerHTML = astronautas.length
-    ? astronautas.map(a => `<div class="item"><strong> ${a.nome}</strong>
-        <span>Idade: ${a.idade}</span><span>Nacionalidade: ${a.nac}</span>
-        <span class="badge">${a.esp}</span></div>`).join('')
-    : '<p class="vazio">Nenhum astronauta registrado.</p>';
+  ? astronautas.map((a, i) => `<div class="item"><strong> ${a.nome}</strong>
+      <span>Idade: ${a.idade}</span><span>Nacionalidade: ${a.nacionalidade}</span>
+      <span class="badge">${a.especializacao}</span>
+      <button class="btn vermelho" style="padding:4px 12px;font-size:11px" onclick="deletarAstronauta(${i})">✕ Deletar</button></div>`).join('')
+  : '<p class="vazio">Nenhum astronauta registrado.</p>';
  
   document.getElementById('lista-foguetes').innerHTML = foguetes.length
     ? foguetes.map((f, i) => `<div class="item"><strong> ${f.nome}</strong>
@@ -132,12 +152,13 @@ function renderizarHangar() {
     : '<p class="vazio">Nenhum foguete registrado.</p>';
  
   document.getElementById('lista-satelites').innerHTML = satelites.length
-    ? satelites.map(s => `<div class="item"><strong> ${s.nome}</strong>
-        <span>Massa: ${s.massa} kg</span><span>Órbita: ${s.orbita}</span>
-        <span>Energia: ${s.energia}%</span><span>Função: ${s.obs}</span>
-        <span class="badge">${s.status}</span></div>`).join('')
-    : '<p class="vazio">Nenhum satélite registrado.</p>';
-}
+  ? satelites.map((s, i) => `<div class="item"><strong> ${s.nome}</strong>
+      <span>Massa: ${s.massa} kg</span><span>Órbita: ${s.orbita}</span>
+      <span>Energia: ${s.energia}%</span><span>Função: ${s.obs}</span>
+      <span class="badge">${s.status}</span>
+      <button class="btn vermelho" style="padding:4px 12px;font-size:11px" onclick="deletarSatelite(${i})">✕ Deletar</button></div>`).join('')
+  : '<p class="vazio">Nenhum satélite registrado.</p>';
+  }
  
 // ── Preencher selects ──
 function opcoes(arr) {
@@ -273,4 +294,3 @@ function limparTrajetoria() {
 // ── Iniciar ──
 carregarFoguetes();
 carregarAstronautas();
-
