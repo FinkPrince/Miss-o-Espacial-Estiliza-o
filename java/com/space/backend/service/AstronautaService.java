@@ -14,4 +14,8 @@ public class AstronautaService {
 
     public List<Astronauta> listar() { return repo.findAll(); }
     public Astronauta salvar(Astronauta a) { return repo.save(a); }
+
+    public void deletar(Long id) {
+        repo.deleteById(id);
+    }
 }
