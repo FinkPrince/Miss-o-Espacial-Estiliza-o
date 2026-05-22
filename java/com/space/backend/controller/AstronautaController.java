@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/astronautas")
+@RequestMapping("/api/astronautas")
 @CrossOrigin(origins = "*")
 public class AstronautaController {
 
@@ -19,5 +19,10 @@ public class AstronautaController {
     @PostMapping
     public Astronauta salvar(@RequestBody Astronauta astronauta) {
         return service.salvar(astronauta);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
     }
 }
