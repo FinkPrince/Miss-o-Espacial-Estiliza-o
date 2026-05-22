@@ -86,7 +86,6 @@ nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
 .card {
   background: var(--card);
   border: 1px solid var(--borda);
-  border-left: 3px solid var(--azul);
   border-radius: 4px;
   padding: 24px;
   margin-bottom: 16px;
