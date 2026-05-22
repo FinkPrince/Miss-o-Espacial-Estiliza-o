@@ -11,22 +11,20 @@
   --texto:    #c8dff0;
   --texto2:   #7aadce;
   --cinza:    #4a7a9b;
-  --raio:     14px;
 }
- 
+
 /* ── Base ── */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   background: transparent;
   color: var(--texto);
-  font-family: ui-rounded, 'SF Pro Rounded', 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
+  font-family: monospace;
   font-size: 15px;
   padding: 20px;
   max-width: 900px;
   margin: 0 auto;
-  letter-spacing: 0.2px;
 }
- 
+
 /* Fundo estrelado cobrindo toda a tela */
 body::before {
   content: '';
@@ -46,7 +44,7 @@ body::before {
     radial-gradient(1px 1px at 65% 20%, #fff 0%, transparent 100%),
     radial-gradient(2px 2px at 80% 90%, #fff 0%, transparent 100%);
 }
- 
+
 /* ── Header ── */
 header {
   text-align: center;
@@ -56,7 +54,7 @@ header {
 }
 header h1 { font-size: 22px; color: var(--azul); letter-spacing: 3px; }
 header p  { font-size: 11px; color: var(--cinza); margin-top: 6px; letter-spacing: 4px; }
- 
+
 /* ── Nav ── */
 nav {
   display: flex;
@@ -70,39 +68,37 @@ nav button {
   border: none;
   border-bottom: 2px solid transparent;
   color: var(--cinza);
-  font-family: inherit;
+  font-family: monospace;
   font-size: 12px;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   padding: 10px 18px 12px;
   cursor: pointer;
   white-space: nowrap;
-  border-radius: var(--raio) var(--raio) 0 0;
 }
 nav button:hover { color: var(--texto2); }
 nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
- 
+
 /* ── Abas ── */
 .aba { display: none; }
 .aba.ativa { display: block; }
- 
+
 /* ── Card ── */
 .card {
   background: var(--card);
   border: 1px solid var(--borda);
   border-left: 3px solid var(--azul);
-  border-radius: var(--raio);
+  border-radius: 4px;
   padding: 24px;
   margin-bottom: 16px;
 }
 .card h2 {
   font-size: 13px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   color: var(--azul);
   margin-bottom: 16px;
   text-transform: uppercase;
-  font-weight: 700;
 }
- 
+
 /* ── Formulário ── */
 .formulario {
   display: grid;
@@ -124,11 +120,11 @@ nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
 .controles select {
   background: #0f1e35;
   border: 1px solid var(--borda);
-  border-radius: var(--raio);
+  border-radius: 3px;
   color: var(--texto);
-  font-family: inherit;
+  font-family: monospace;
   font-size: 13px;
-  padding: 8px 12px;
+  padding: 8px 10px;
   outline: none;
 }
 .formulario input:focus,
@@ -137,38 +133,37 @@ nav button.ativo { color: var(--azul); border-bottom-color: var(--azul); }
 input[type="number"] { -moz-appearance: textfield; }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
- 
+
 /* ── Botões ── */
 .btn {
   border: 1px solid;
-  border-radius: var(--raio);
+  border-radius: 3px;
   background: transparent;
-  font-family: inherit;
+  font-family: monospace;
   font-size: 12px;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   padding: 10px 22px;
   cursor: pointer;
   transition: opacity .2s;
-  font-weight: 600;
 }
 .btn:hover    { opacity: .8; }
 .btn.azul     { color: var(--azul);     border-color: var(--azul); }
 .btn.verde    { color: var(--verde);    border-color: var(--verde); }
 .btn.vermelho { color: var(--vermelho); border-color: var(--vermelho); }
 .btn.cinza    { color: var(--cinza);    border-color: var(--cinza); }
- 
+
 /* ── Alertas ── */
-.alerta { font-size: 12px; padding: 10px 14px; border-radius: var(--raio); margin-bottom: 14px; display: none; }
+.alerta { font-size: 12px; padding: 8px 12px; border-radius: 3px; margin-bottom: 14px; display: none; }
 .alerta.ok   { display:block; color:var(--verde);    border:1px solid var(--verde);    background:rgba(0,255,157,.05); }
 .alerta.erro { display:block; color:var(--vermelho); border:1px solid var(--vermelho); background:rgba(255,61,90,.05); }
- 
+
 /* ── Hangar ── */
 h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 14px; }
 .vazio { color: var(--cinza); font-size: 12px; padding: 30px; text-align: center; }
 .item {
   background: #0c1626;
   border: 1px solid var(--borda);
-  border-radius: var(--raio);
+  border-radius: 4px;
   padding: 14px 18px;
   margin-bottom: 10px;
   display: flex;
@@ -183,11 +178,10 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   color: var(--azul);
   border: 1px solid var(--borda);
   background: rgba(0,200,255,.08);
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 2px;
 }
- 
+
 /* ── Telemetria ── */
 .telemetria {
   display: grid;
@@ -198,7 +192,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 .tele {
   background: #0c1626;
   border: 1px solid var(--borda);
-  border-radius: var(--raio);
+  border-radius: 4px;
   padding: 12px 14px;
   display: flex;
   flex-direction: column;
@@ -206,7 +200,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 }
 .tele-label { font-size: 10px; color: var(--cinza); letter-spacing: 2px; text-transform: uppercase; }
 .tele-valor { font-size: 20px; font-weight: bold; color: var(--verde); }
- 
+
 /* ── Terminal ── */
 .controles {
   display: flex;
@@ -219,7 +213,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
 #terminal {
   background: #02080f;
   border: 1px solid var(--borda);
-  border-radius: var(--raio);
+  border-radius: 4px;
   padding: 20px;
   min-height: 200px;
   display: flex;
@@ -232,18 +226,17 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   color: var(--texto2);
   opacity: 0;
   animation: aparecer .3s forwards;
-  font-family: 'Courier New', monospace;
 }
 #terminal span.azul    { color: var(--azul); }
 #terminal span.verde   { color: var(--verde); }
 #terminal span.amarelo { color: var(--amarelo); }
 #terminal span.vermelho{ color: var(--vermelho); }
 @keyframes aparecer { to { opacity: 1; } }
- 
+
 /* ── Trajetória ── */
 .traj-svg {
   width: 100%;
-  border-radius: var(--raio);
+  border-radius: 4px;
   border: 1px solid var(--borda);
   display: block;
   margin-top: 14px;
@@ -254,14 +247,14 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   gap: 10px 24px;
   background: #0c1626;
   border: 1px solid var(--borda);
-  border-radius: var(--raio);
+  border-radius: 4px;
   padding: 12px 16px;
   font-size: 12px;
   color: var(--texto2);
   margin-top: 14px;
 }
 .traj-info b { color: var(--azul); }
- 
+
 /* ── Satélite ── */
 .space-section {
   min-height: 300px;
@@ -272,24 +265,24 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   border-top: 1px solid var(--borda);
   margin-top: 40px;
 }
- 
+
 .satelite-wrapper {
   z-index: 1;
   position: relative;
   animation: flutuar 6s ease-in-out infinite;
 }
- 
+
 @keyframes flutuar {
   0%, 100% { transform: translateY(0)     rotate(-2deg); }
   50%       { transform: translateY(-24px) rotate(2deg); }
 }
- 
+
 .satelite {
   display: flex;
   align-items: center;
   gap: 6px;
 }
- 
+
 .painel {
   width: 90px;
   height: 60px;
@@ -300,7 +293,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   border: 2px solid #1a4a7a;
   border-radius: 4px;
 }
- 
+
 .corpo {
   width: 70px;
   height: 70px;
@@ -314,7 +307,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   gap: 8px;
   position: relative;
 }
- 
+
 .antena {
   width: 2px;
   height: 22px;
@@ -332,7 +325,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   top: -10px;
   left: -3px;
 }
- 
+
 .janela {
   width: 26px;
   height: 26px;
@@ -341,7 +334,7 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   background: #001828;
   box-shadow: 0 0 8px rgba(0,200,255,0.4);
 }
- 
+
 .led {
   width: 7px;
   height: 7px;
@@ -350,11 +343,11 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   box-shadow: 0 0 6px #00ff9d;
   animation: piscar 1.5s ease-in-out infinite;
 }
- 
+
 @keyframes piscar {
   50% { opacity: 0.2; }
 }
- 
+
 .space-label {
   margin-top: 20px;
   color: var(--azul);
@@ -364,3 +357,10 @@ h2 { font-size: 13px; color: var(--texto2); letter-spacing: 2px; margin-bottom: 
   z-index: 1;
   position: relative;
 }
+
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.estrelas span { position: absolute; font-size: 24px; opacity: 0.3; }
+.estrelas span:nth-child(1) { top: 200px;    left: 120px;   }
+.estrelas span:nth-child(2) { top: 300px;    right: 140px;  }
+.estrelas span:nth-child(3) { bottom: 200px; left: 140px;   }
+.estrelas span:nth-child(4) { bottom: 200px; right: 240px;  }
