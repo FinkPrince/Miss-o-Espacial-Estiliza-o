@@ -15,7 +15,7 @@
 
 <nav>
   <button class="ativo" onclick="trocarAba('astronautas', this)">Astronautas</button>
-  <button class="ativo" onclick="trocarAba('foguetes', this)">Foguetes</button>
+  <button onclick="trocarAba('foguetes', this)">Foguetes</button>
   <button onclick="trocarAba('satelites', this)">Satélites</button>
   <button onclick="trocarAba('hangar', this)">Hangar</button>
   <button onclick="trocarAba('simulacao', this)">Simulação</button>
@@ -42,9 +42,9 @@
     <button class="btn azul" onclick="registrarAstronauta()">Registrar</button>
   </div>
 </section>
-  
+
 <!-- Foguetes -->
-<section id="foguetes" class="aba ativa">
+<section id="foguetes" class="aba">
   <div class="card">
     <h2>Registrar Foguete</h2>
     <div id="alerta-foguete" class="alerta"></div>
@@ -101,7 +101,9 @@
 
 <!-- Hangar -->
 <section id="hangar" class="aba">
-  <h2> Foguetes <span id="qtd-foguetes" class="badge">0</span></h2>
+  <h2> Astronautas <span id="qtd-astronautas" class="badge">0</span></h2>
+  <div id="lista-astronautas"><p class="vazio">Nenhum astronauta registrado.</p></div>
+  <h2 style="margin-top:32px"> Foguetes <span id="qtd-foguetes" class="badge">0</span></h2>
   <div id="lista-foguetes"><p class="vazio">Nenhum foguete registrado.</p></div>
   <h2 style="margin-top:32px"> Satélites <span id="qtd-satelites" class="badge">0</span></h2>
   <div id="lista-satelites"><p class="vazio">Nenhum satélite registrado.</p></div>
@@ -141,10 +143,6 @@
   </div>
 </section>
 
-<script src="script.js"></script>
-</body>
-</html>
-
 <div class="space-section">
   <div class="satelite-wrapper">
     <div class="satelite">
@@ -158,3 +156,7 @@
     </div>
   </div>
 </div>
+
+<script src="script.js"></script>
+</body>
+</html>
