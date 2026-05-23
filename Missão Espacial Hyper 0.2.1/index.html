@@ -9,7 +9,7 @@
 <body>
 
 <header>
-  <h1> Centro de Controle Espacial</h1>
+  <h1>🚀 Centro de Controle Espacial</h1>
   <p>Missão Supernova Skywalker !</p>
 </header>
 
@@ -20,6 +20,7 @@
   <button onclick="trocarAba('hangar', this)">Hangar</button>
   <button onclick="trocarAba('simulacao', this)">Simulação</button>
   <button onclick="trocarAba('trajetoria', this)">Trajetória</button>
+  <button onclick="logout()" style="margin-left:auto; color:var(--vermelho); border-bottom-color:transparent">⏻ Sair</button>
 </nav>
 
 <!-- Astronautas -->
@@ -101,11 +102,11 @@
 
 <!-- Hangar -->
 <section id="hangar" class="aba">
-  <h2> Astronautas <span id="qtd-astronautas" class="badge">0</span></h2>
+  <h2>Astronautas <span id="qtd-astronautas" class="badge">0</span></h2>
   <div id="lista-astronautas"><p class="vazio">Nenhum astronauta registrado.</p></div>
-  <h2 style="margin-top:32px"> Foguetes <span id="qtd-foguetes" class="badge">0</span></h2>
+  <h2 style="margin-top:32px">Foguetes <span id="qtd-foguetes" class="badge">0</span></h2>
   <div id="lista-foguetes"><p class="vazio">Nenhum foguete registrado.</p></div>
-  <h2 style="margin-top:32px"> Satélites <span id="qtd-satelites" class="badge">0</span></h2>
+  <h2 style="margin-top:32px">Satélites <span id="qtd-satelites" class="badge">0</span></h2>
   <div id="lista-satelites"><p class="vazio">Nenhum satélite registrado.</p></div>
 </section>
 
@@ -118,7 +119,7 @@
     <div class="tele"><span class="tele-label">Status</span><span id="t-status" class="tele-valor">--</span></div>
   </div>
   <div class="card">
-    <h2> Controle de Lançamento</h2>
+    <h2>Controle de Lançamento</h2>
     <div class="controles">
       <select id="sim-foguete"><option value="">-- Selecionar Foguete --</option></select>
       <select id="sim-satelite"><option value="">-- Selecionar Satélite --</option></select>
@@ -132,7 +133,7 @@
 <!-- Trajetória -->
 <section id="trajetoria" class="aba">
   <div class="card">
-    <h2> Trajetória de Lançamento</h2>
+    <h2>Trajetória de Lançamento</h2>
     <div class="controles">
       <select id="traj-foguete"><option value="">-- Selecionar Foguete --</option></select>
       <button class="btn azul" onclick="mostrarTrajetoria()">▶ Simular</button>
@@ -158,12 +159,20 @@
 </div>
 
 <div class="estrelas">
-  <span>⭐</span>
-  <span>⭐</span>
-  <span>⭐</span>
-  <span>⭐</span>
+  <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
 </div>
 
+<script>
+  // Proteção — redireciona para login se não houver sessão
+  if (!localStorage.getItem('esp_session')) {
+    window.location.href = 'login-espacial.html';
+  }
+
+  function logout() {
+    localStorage.removeItem('esp_session');
+    window.location.href = 'login-espacial.html';
+  }
+</script>
 <script src="script.js"></script>
 </body>
 </html>
