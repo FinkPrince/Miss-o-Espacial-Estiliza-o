@@ -20,7 +20,6 @@
   <button onclick="trocarAba('hangar', this)">Hangar</button>
   <button onclick="trocarAba('simulacao', this)">Simulação</button>
   <button onclick="trocarAba('trajetoria', this)">Trajetória</button>
-  <button onclick="logout()" style="margin-left:auto; color:var(--vermelho); border-bottom-color:transparent">⏻ Sair</button>
 </nav>
 
 <!-- Astronautas -->
@@ -167,7 +166,6 @@
   if (!localStorage.getItem('esp_session')) {
     window.location.href = 'login-espacial.html';
   }
-
   function logout() {
     localStorage.removeItem('esp_session');
     window.location.href = 'login-espacial.html';
