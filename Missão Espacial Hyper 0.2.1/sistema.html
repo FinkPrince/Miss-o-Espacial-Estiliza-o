@@ -9,7 +9,7 @@
 <body>
 
 <header>
-  <h1>Centro de Controle Espacial</h1>
+  <h1> Centro de Controle Espacial</h1>
   <p>Missão Supernova Skywalker !</p>
 </header>
 
@@ -163,13 +163,14 @@
 </div>
 
 <script>
-  // Proteção — redireciona para login se não houver sessão
+  
   if (!localStorage.getItem('esp_session')) {
-    window.location.href = 'login-espacial.html';
+    window.location.href = 'login.html';
   }
+
   function logout() {
     localStorage.removeItem('esp_session');
-    window.location.href = 'login-espacial.html';
+    window.location.href = 'login.html';
   }
 </script>
 <script src="script.js"></script>
