@@ -290,6 +290,26 @@ function limparTrajetoria() {
   document.getElementById('traj-container').innerHTML = '<p class="vazio">Selecione um foguete para visualizar a trajetória.</p>';
   document.getElementById('traj-info').style.display = 'none';
 }
+async function carregarAPOD() {
+  const API_KEY = 'DEMO_KEY';
+  try {
+    const res  = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`);
+    const data = await res.json();
+
+    const html = `
+      <p style="color:var(--azul);font-size:13px;letter-spacing:2px">${data.date}</p>
+      <h3 style="color:var(--texto);margin:8px 0 14px">${data.title}</h3>
+      ${data.media_type === 'image'
+        ? `<img src="${data.url}" style="width:100%;border-radius:8px;margin-bottom:14px">`
+        : `<iframe src="${data.url}" style="width:100%;height:300px;border:none;border-radius:8px;margin-bottom:14px"></iframe>`
+      }
+      <p style="color:var(--texto2);font-size:13px;line-height:1.8">${data.explanation}</p>
+    `;
+    document.getElementById('apod-conteudo').innerHTML = html;
+  } catch (e) {
+    document.getElementById('apod-conteudo').innerHTML = '<p class="vazio">Erro ao carregar dados da NASA.</p>';
+  }
+}
  
 // ── Iniciar ──
 carregarFoguetes();
