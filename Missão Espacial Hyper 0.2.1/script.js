@@ -52,6 +52,7 @@ function trocarAba(id, botao) {
   if (id === 'hangar')     renderizarHangar();
   if (id === 'simulacao')  preencherSelects();
   if (id === 'trajetoria') preencherSelectTrajetoria();
+  if (id === 'apod')       carregarAPOD();
 }
  
 // ── Alerta temporário ──
