@@ -291,6 +291,7 @@ function limparTrajetoria() {
   document.getElementById('traj-container').innerHTML = '<p class="vazio">Selecione um foguete para visualizar a trajetória.</p>';
   document.getElementById('traj-info').style.display = 'none';
 }
+// ── API NASA APOD ──
 async function carregarAPOD() {
   const API_KEY = 'DEMO_KEY';
   try {
