@@ -312,7 +312,6 @@ async function carregarAPOD() {
     document.getElementById('apod-conteudo').innerHTML = '<p class="vazio">Erro ao carregar dados da NASA.</p>';
   }
 }
- 
 // ── Iniciar ──
 carregarFoguetes();
 carregarAstronautas();
