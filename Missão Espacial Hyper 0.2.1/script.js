@@ -315,3 +315,4 @@ async function carregarAPOD() {
 // ── Iniciar ──
 carregarFoguetes();
 carregarAstronautas();
+carregarSatelites();
