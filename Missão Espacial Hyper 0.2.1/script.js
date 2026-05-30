@@ -5,7 +5,7 @@ let foguetes   = [];
 let astronautas = [];
 const satelites = [];
  
-// ── Carregar dados da API ──
+// ── Carregar dados da API (foguetes, satélite e astronautas) ──
 async function carregarFoguetes() {
   try {
     const res = await fetch(API_FOGUETES);
@@ -20,6 +20,15 @@ async function carregarAstronautas() {
     const res = await fetch(API_ASTRONAUTAS);
     astronautas = await res.json();
   } catch (e) { console.error('Erro ao carregar astronautas:', e); }
+}
+
+async function carregarSatelites() {
+  try {
+    const res = await fetch(API_SATELITES);
+    const data = await res.json();
+    satelites.length = 0;
+    data.forEach(s => satelites.push(s));
+  } catch (e) { console.error('Erro ao carregar satélites:', e); }
 }
  
 // ── Registrar astronauta ──
