@@ -104,16 +104,24 @@ async function registrarFoguete() {
 }
  
 // ── Registrar satélite  ──
-function registrarSatelite() {
+async function registrarSatelite() {
   const [nome, massa, energia, orbita, obs, tempo] = lerCampos(['s-nome','s-massa','s-energia','s-orbita','s-obs','s-tempo']);
-  if (!nome || [massa,energia].some(v => v === '' || isNaN(+v)))
+  if (!nome || [massa, energia].some(v => v === '' || isNaN(+v)))
     return mostrarAlerta('alerta-satelite', '⚠ Preencha todos os campos.', 'erro');
- 
-  satelites.push({ nome, massa:+massa, energia:+energia, orbita, obs, tempo, status:'Inativo' });
-  mostrarAlerta('alerta-satelite', `✓ Satélite "${nome}" registrado!`, 'ok');
-  ['s-nome','s-massa','s-energia'].forEach(id => document.getElementById(id).value = '');
+  try {
+    const res = await fetch(API_SATELITES, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, massa: +massa, energia: +energia, orbita, funcao: obs, tempoOrbita: tempo })
+    });
+    const novo = await res.json();
+    satelites.push(novo);
+    mostrarAlerta('alerta-satelite', `✓ Satélite "${nome}" registrado!`, 'ok');
+    ['s-nome','s-massa','s-energia'].forEach(id => document.getElementById(id).value = '');
+  } catch (e) {
+    mostrarAlerta('alerta-satelite', '✗ Erro ao conectar com o servidor.', 'erro');
+  }
 }
- 
 // ── Deletar foguete ──
 async function deletarFoguete(i) {
   const f = foguetes[i];
