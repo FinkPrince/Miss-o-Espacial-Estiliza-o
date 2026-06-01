@@ -1,5 +1,6 @@
 const API_FOGUETES    = 'http://localhost:8080/api/foguetes';
 const API_ASTRONAUTAS = 'http://localhost:8080/api/astronautas';
+const API_SATELITES = 'http://localhost:8080/api/satelites';
  
 let foguetes   = [];
 let astronautas = [];
@@ -44,10 +45,10 @@ async function registrarAstronauta() {
     });
     const novo = await res.json();
     astronautas.push(novo);
-    mostrarAlerta('alerta-astronauta', `✓ Astronauta "${nome}" registrado!`, 'ok');
+    mostrarAlerta('alerta-astronauta', ` Astronauta "${nome}" registrado!`, 'ok');
     ['a-nome','a-idade','a-nac'].forEach(id => document.getElementById(id).value = '');
   } catch (e) {
-    mostrarAlerta('alerta-astronauta', '✗ Erro ao conectar com o servidor.', 'erro');
+    mostrarAlerta('alerta-astronauta', ' Erro ao conectar com o servidor.', 'erro');
   }
 }
  
@@ -61,7 +62,8 @@ function trocarAba(id, botao) {
   if (id === 'hangar')     renderizarHangar();
   if (id === 'simulacao')  preencherSelects();
   if (id === 'trajetoria') preencherSelectTrajetoria();
-  if (id === 'apod')       carregarAPOD();
+   if (id === 'apod')       carregarAPOD();
+   if (id === 'satelites')  carregarSatelites();
 }
  
 // ── Alerta temporário ──
@@ -94,12 +96,12 @@ async function registrarFoguete() {
  
     const novoFoguete = await res.json();
     foguetes.push(novoFoguete);
-    mostrarAlerta('alerta-foguete', `✓ Foguete "${nome}" registrado!`, 'ok');
+    mostrarAlerta('alerta-foguete', ` Foguete "${nome}" registrado!`, 'ok');
     preencherSelects();
     preencherSelectTrajetoria();
     ['f-nome','f-carga','f-combustivel','f-temperatura'].forEach(id => document.getElementById(id).value = '');
   } catch (e) {
-    mostrarAlerta('alerta-foguete', '✗ Erro ao conectar com o servidor.', 'erro');
+    mostrarAlerta('alerta-foguete', ' Erro ao conectar com o servidor.', 'erro');
   }
 }
  
@@ -109,6 +111,7 @@ async function registrarSatelite() {
   if (!nome || [massa, energia].some(v => v === '' || isNaN(+v)))
     return mostrarAlerta('alerta-satelite', '⚠ Preencha todos os campos.', 'erro');
   try {
+    console.log(JSON.stringify({ nome, massa: +massa, energia: +energia, orbita, funcao: obs, tempoOrbita: tempo }));
     const res = await fetch(API_SATELITES, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -116,12 +119,13 @@ async function registrarSatelite() {
     });
     const novo = await res.json();
     satelites.push(novo);
-    mostrarAlerta('alerta-satelite', `✓ Satélite "${nome}" registrado!`, 'ok');
+    mostrarAlerta('alerta-satelite', ` Satélite "${nome}" registrado!`, 'ok');
     ['s-nome','s-massa','s-energia'].forEach(id => document.getElementById(id).value = '');
   } catch (e) {
-    mostrarAlerta('alerta-satelite', '✗ Erro ao conectar com o servidor.', 'erro');
+    mostrarAlerta('alerta-satelite', ' Erro ao conectar com o servidor.', 'erro');
   }
 }
+ 
 // ── Deletar foguete ──
 async function deletarFoguete(i) {
   const f = foguetes[i];
@@ -143,12 +147,16 @@ async function deletarAstronauta(i) {
   renderizarHangar();
 }
 // ── Deletar satélite ──
-function deletarSatelite(i) {
+async function deletarSatelite(i) {
+  const s = satelites[i];
+  try {
+    await fetch(`${API_SATELITES}/${s.id}`, { method: 'DELETE' });
+  } catch (e) { console.warn('Erro ao deletar satélite:', e); }
   satelites.splice(i, 1);
   preencherSelects();
   renderizarHangar();
 }
- 
+
 // ── Renderizar Hangar ──
 function renderizarHangar() {
   document.getElementById('qtd-astronautas').textContent = astronautas.length;
@@ -169,10 +177,10 @@ function renderizarHangar() {
         <button class="btn vermelho" style="padding:4px 12px;font-size:11px" onclick="deletarFoguete(${i})">✕ Deletar</button></div>`).join('')
     : '<p class="vazio">Nenhum foguete registrado.</p>';
  
-  document.getElementById('lista-satelites').innerHTML = satelites.length
+ document.getElementById('lista-satelites').innerHTML = satelites.length
   ? satelites.map((s, i) => `<div class="item"><strong> ${s.nome}</strong>
       <span>Massa: ${s.massa} kg</span><span>Órbita: ${s.orbita}</span>
-      <span>Energia: ${s.energia}%</span><span>Função: ${s.obs}</span>
+      <span>Energia: ${s.energia}%</span><span>Função: ${s.funcao}</span>
       <span class="badge">${s.status}</span>
       <button class="btn vermelho" style="padding:4px 12px;font-size:11px" onclick="deletarSatelite(${i})">✕ Deletar</button></div>`).join('')
   : '<p class="vazio">Nenhum satélite registrado.</p>';
@@ -204,7 +212,7 @@ function simularLancamento() {
   add('> INICIANDO LANÇAMENTO...', 'azul');
   add(`> Foguete: ${f.nome} | Combustível: ${f.combustivel} L`);
   add(f.temperatura > 70
-    ? `> ⚠ Temperatura ALTA: ${f.temperatura}°C — resfriando...` : `> ✓ Temperatura normal: ${f.temperatura}°C`,
+    ? `>  Temperatura ALTA: ${f.temperatura}°C — resfriando...` : `>  Temperatura normal: ${f.temperatura}°C`,
     f.temperatura > 70 ? 'amarelo' : 'verde');
  
   f.combustivel += 100;
@@ -218,16 +226,16 @@ function simularLancamento() {
     if (s) {
       add(`> Separando satélite ${s.nome}...`);
       s.energia = Math.min(100, s.energia + 20);
-      add(`> ✓ Satélite em órbita ${s.orbita} | Energia: ${s.energia}%`, 'verde');
+      add(`>  Satélite em órbita ${s.orbita} | Energia: ${s.energia}%`, 'verde');
       s.status = 'Ativo';
-      add('> ✓ MISSÃO CONCLUÍDA!', 'verde');
+      add('>  MISSÃO CONCLUÍDA!', 'verde');
     } else {
-      add('> ✓ LANÇAMENTO CONCLUÍDO!', 'verde');
+      add('>  LANÇAMENTO CONCLUÍDO!', 'verde');
     }
   } else {
-    add(`> ✗ FALHA! Combustível insuficiente: ${f.combustivel} L (mínimo: 400 L)`, 'vermelho');
+    add(`>  FALHA! Combustível insuficiente: ${f.combustivel} L (mínimo: 400 L)`, 'vermelho');
     f.status = 'Falha';
-    add('> ✗ MISSÃO FALHOU!', 'vermelho');
+    add('>  MISSÃO FALHOU!', 'vermelho');
   }
  
   document.getElementById('terminal').innerHTML = log.map((l, i) =>
@@ -239,7 +247,7 @@ function simularLancamento() {
   document.getElementById('t-temp').textContent  = f.temperatura;
   document.getElementById('t-ener').textContent  = s ? s.energia : '--';
   const stEl = document.getElementById('t-status');
-  stEl.textContent = ok ? '✓ OK' : '✗ FALHA';
+  stEl.textContent = ok ? ' OK' : ' FALHA';
   stEl.style.color = ok ? '#00ff9d' : '#ff3d5a';
 }
  
@@ -249,31 +257,36 @@ function limparSimulacao() {
 }
  
 // ── Trajetória ──
+
+//aqui cada foguete tem uma trajetoria
 function mostrarTrajetoria() {
   const fi = document.getElementById('traj-foguete').value;
   if (fi === '') return alert('Selecione um foguete!');
  
   const f    = foguetes[+fi];
   const seed = +fi + 1;
+  //aqui calcula os pontos da trajetória
   const pts  = [
     { x: 80,                   y: 340, label: 'Terra' },
     { x: 80  + seed * 60,      y: 260 - seed * 10, label: 'Ignição' },
     { x: 200 + seed * 50,      y: 180 - seed * 15, label: 'Atmosfera' },
     { x: 340 + seed * 40,      y: 100 - seed * 5,  label: 'Órbita' },
   ];
- 
+ //aqui é o caminho SVG, com curva quadrática para dar o efeito de "curvatura" na trajetória
   let d = `M ${pts[0].x} ${pts[0].y}`;
   for (let i = 1; i < pts.length; i++) {
     const cx = (pts[i-1].x + pts[i].x) / 2;
     d += ` Q ${cx} ${pts[i-1].y} ${pts[i].x} ${pts[i].y}`;
   }
- 
+ // aqui é pra criar os "pins" falando sobre a trajetória e tals
   const pins = pts.map(p => `
     <circle cx="${p.x}" cy="${p.y}" r="6" fill="#060b14" stroke="#00c8ff" stroke-width="2"/>
     <circle cx="${p.x}" cy="${p.y}" r="2" fill="#00c8ff"/>
     <line x1="${p.x}" y1="${p.y}" x2="${p.x}" y2="${p.y-28}" stroke="#00c8ff" stroke-width="1.5" stroke-dasharray="3,2"/>
     <text x="${p.x}" y="${p.y-34}" text-anchor="middle" fill="#00c8ff" font-size="11" font-family="monospace">${p.label}</text>`).join('');
- 
+
+    // SVG completo: defs-> grind de fundo e efeito de brilho, rect-> 2 retangulos, 1 path-> sombra na trajetoria, 2 path-> trajetoria com animação de desenho, ${pins}-> os marcadores mencionados antes, <text> com animateMotion-> animação do foguetinho fazendo a rota fofinha dele =)
+
   document.getElementById('traj-container').innerHTML = `
     <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" class="traj-svg">
       <defs>
@@ -298,17 +311,20 @@ function mostrarTrajetoria() {
       <text x="300" y="370" text-anchor="middle" fill="rgba(0,200,255,0.4)" font-size="11" font-family="monospace" letter-spacing="3">${f.nome.toUpperCase()}</text>
     </svg>`;
  
+    // informações do foguetin =)
+  
   const info = document.getElementById('traj-info');
   info.style.display = 'flex';
   info.innerHTML = `<span> <b>${f.nome}</b></span><span>Combustível: ${f.combustivel} L</span>
     <span>Temperatura: ${f.temperatura}°C</span><span>Status: ${f.status}</span>`;
 }
  
+// limpa a trajetória e volta pra tela padrão pro usuário fazer dnv
 function limparTrajetoria() {
   document.getElementById('traj-container').innerHTML = '<p class="vazio">Selecione um foguete para visualizar a trajetória.</p>';
   document.getElementById('traj-info').style.display = 'none';
 }
-// ── API NASA APOD ──
+
 async function carregarAPOD() {
   const API_KEY = 'DEMO_KEY';
   try {
@@ -324,11 +340,13 @@ async function carregarAPOD() {
       }
       <p style="color:var(--texto2);font-size:13px;line-height:1.8">${data.explanation}</p>
     `;
+
     document.getElementById('apod-conteudo').innerHTML = html;
   } catch (e) {
     document.getElementById('apod-conteudo').innerHTML = '<p class="vazio">Erro ao carregar dados da NASA.</p>';
   }
 }
+ 
 // ── Iniciar ──
 carregarFoguetes();
 carregarAstronautas();
